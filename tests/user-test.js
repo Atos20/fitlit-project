@@ -13,7 +13,7 @@ describe('User', () => {
 
   userData = { 
     "id": 2,
-    "name": "Christopher",
+    "name": "Christopher Jonson",
     "address": "123 5th Street, Denver CO 12345",
     "email": "Christopher@hotmail.com",
     "strideLength": 4,
@@ -23,7 +23,7 @@ describe('User', () => {
 
    userData2 = { 
     "id": 10,
-    "name": "Mar",
+    "name": "Mar Matlak",
     "address": "321 100th Street, Boulder CO 54321",
     "email": "Mar@hotmail.com",
     "strideLength": 10,
@@ -43,7 +43,7 @@ describe('User', () => {
   });
 
   it('should be able to have a name', () => {
-    expect(user.name).to.equal('Christopher');
+    expect(user.name).to.equal('Christopher Jonson');
   });
 
   it('should be able to have an address', () => {
@@ -68,7 +68,7 @@ describe('User', () => {
 
   it('should be able to have different values', () => {
     expect(user2.id).to.equal(10)
-    expect(user2.name).to.equal('Mar')
+    expect(user2.name).to.equal('Mar Matlak')
     expect(user2.address).to.equal("321 100th Street, Boulder CO 54321")
     expect(user2.email).to.equal("Mar@hotmail.com")
     expect(user2.strideLength).to.equal(10)
@@ -76,4 +76,8 @@ describe('User', () => {
     expect(user2.friends).to.deep.equal([ 10, 30, 40])
   });
 
+  it('should be able to return the name of the user', () => {
+    expect(user.getFirstName()).to.equal('Christopher')
+    expect(user2.getFirstName()).to.equal('Mar')
+  });
 });
