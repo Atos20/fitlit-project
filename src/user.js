@@ -8,6 +8,11 @@ class User {
     this.dailyStepGoal = userData.dailyStepGoal;
     this.friends = userData.friends;
   }
+
+  getFirstName() {
+    const firstName = this.name.split(' ');
+    return firstName[0];
+  }
 }
 
 if (typeof module !== 'undefined'){
