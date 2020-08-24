@@ -6,11 +6,12 @@ const User = require('../src/user');
 describe('User', () => {
 
   let user;
+  let user2;
   let userData;
 
   beforeEach(() => {
 
-    userData = { 
+  userData = { 
     "id": 2,
     "name": "Christopher",
     "address": "123 5th Street, Denver CO 12345",
@@ -19,8 +20,18 @@ describe('User', () => {
     "dailyStepGoal": 20000,
     "friends": [ 1, 3, 4]
   };
-    user = new User(userData);
 
+   userData2 = { 
+    "id": 10,
+    "name": "Mar",
+    "address": "321 100th Street, Boulder CO 54321",
+    "email": "Mar@hotmail.com",
+    "strideLength": 10,
+    "dailyStepGoal": 20,
+    "friends": [ 10, 30, 40]
+  };
+    user = new User(userData);
+    user2 = new User(userData2)
   });
 
   it('should intantiate a user', () => {
