@@ -47,5 +47,7 @@ describe('UserRepository',() => {
     expect(userRepository.retrieveUserInfo(1)).to.deep.equal([data[0]])
   })
 
-  
+  it('Should return average step goal of all users', ()=> {
+    expect(userRepository.calculateAverageStepGoalAll()).to.equal(12500)
+  })
 });
