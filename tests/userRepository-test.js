@@ -42,4 +42,10 @@ describe('UserRepository',() => {
   it('Should store user data', ()=> {
     expect(userRepository.usersData).to.deep.equal(data)
   })
+
+  it('Should be able to access user data by ID', ()=> {
+    expect(userRepository.retrieveUserInfo(1)).to.deep.equal([data[0]])
+  })
+
+  
 });
