@@ -13,7 +13,11 @@ describe('HydrationRepository', () => {
     hydrationRepo = new HydrationRepository(dummyHydrationData);
   })
 
-  it('Should store hydration Data', ()=> {
+  it('Should store hydration Data', () => {
     expect(hydrationRepo.data).to.deep.equal(dummyHydrationData)
+  })
+
+  it('Should be able to calculate average oz all time by user ID', () => {
+    expect(hydrationRepo.calculateAverageOzAllTime(1)).to.equal(32.3)
   })
 })
