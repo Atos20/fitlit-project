@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <title>Activity Tracker</title>
   </head>
   <body>
-    <nav class="nav-bar"><i class="fas fa-bars"></i>
-      <img class="burger-menu" src="">
-      <select name="user-drop" id="">
-        <option value="" class="name">User's Name</option>
-      </select>
+    <nav class="nav-bar">
+    <div class="container-one">
+        <a href=""><i class="burger-menu fas fa-bars"></i></a>
+        <select name="user-drop" id="">
+          <option value="" class="name">User's Name</option>
+        </select>
+      </div>
       <h1 class="challenge"> Today Challenge: 100000 steps!</h1>
-      <input type="date" name="users-date" id="">
-      <button class="find-date">A</button>
+      <div class="container-two">
+        <input type="date" name="users-date" id="">
+        <button class="find-date">A</button>
+    </div>
     </nav>
     <section class="welcome">
       <h2 class="wel-message">Welcome 'User'! Let's have another great day</h2>
@@ -21,7 +27,7 @@
     </section>
     <main class="main">
       <section class="activity">1
-        
+
       </section>
       <section class="hydration">2</section>
       <section class="sleep">3</section>
