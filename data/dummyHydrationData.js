@@ -65,7 +65,7 @@ const dummyHydrationData = [
     "numOunces": 37
   },
   {
-    "userID": 1,
+    "userID": 2,
     "date": "2019/06/7",
     "numOunces": 39
   },
