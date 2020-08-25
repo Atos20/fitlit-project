@@ -8,30 +8,31 @@ describe('User', () => {
   let user;
   let user2;
   let userData;
+  let userData2;
 
   beforeEach(() => {
 
-  userData = { 
-    "id": 2,
-    "name": "Christopher Jonson",
-    "address": "123 5th Street, Denver CO 12345",
-    "email": "Christopher@hotmail.com",
-    "strideLength": 4,
-    "dailyStepGoal": 20000,
-    "friends": [ 1, 3, 4]
-  };
+    userData = { 
+      "id": 2,
+      "name": "Christopher Jonson",
+      "address": "123 5th Street, Denver CO 12345",
+      "email": "Christopher@hotmail.com",
+      "strideLength": 4,
+      "dailyStepGoal": 20000,
+      "friends": [ 1, 3, 4]
+    };
 
-   userData2 = { 
-    "id": 10,
-    "name": "Mar Matlak",
-    "address": "321 100th Street, Boulder CO 54321",
-    "email": "Mar@hotmail.com",
-    "strideLength": 10,
-    "dailyStepGoal": 20,
-    "friends": [ 10, 30, 40]
-  };
+    userData2 = { 
+      "id": 10,
+      "name": "Mar Matlak",
+      "address": "321 100th Street, Boulder CO 54321",
+      "email": "Mar@hotmail.com",
+      "strideLength": 10,
+      "dailyStepGoal": 20,
+      "friends": [ 10, 30, 40]
+    };
     user = new User(userData);
-    user2 = new User(userData2)
+    user2 = new User(userData2);
   });
 
   it('should intantiate a user', () => {
