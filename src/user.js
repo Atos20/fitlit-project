@@ -1,5 +1,5 @@
 class User {
-  constructor (userData) {
+  constructor(userData) {
     this.id = userData.id;
     this.name = userData.name;
     this.address = userData.address;
@@ -15,6 +15,6 @@ class User {
   }
 }
 
-if (typeof module !== 'undefined'){
-    module.exports = User;
+if (typeof module !== 'undefined') {
+  module.exports = User;
 }
