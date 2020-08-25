@@ -25,7 +25,6 @@
 
 .main{
     display: flex;
-
 }
 
 .hydration{
@@ -41,7 +40,19 @@
 }
 
 .user-id-card{
-    background-color: rgb(71, 163, 128)
+    background-color: rgb(71, 163, 128);
+    padding: 2%;
+    text-align: center;
+    font-family: 'Balsamiq Sans', cursive;
+    margin-top: 2%;
+}
+
+.user-image{
+    border-radius: 75px;
+}
+
+.user-id-card, .name, .address, .email, .daily-step-goal{
+    padding: 7% ;
 }
 
 .friends-goals{
