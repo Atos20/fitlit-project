@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav-bar, .welcome{
+    background-color: rgb(53 158 155);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.container-one{
+    
+}
+
+.container-two{
+
+}
+
+.welcome{
+    background-color: rgb(17, 160, 29);
+}
+
+.main{
+    display: flex;
+}
+
+.hydration{
+    background-color: rgb(71, 103, 163)
+}
+
+.activity{
+    background-color: rgb(163, 71, 71)
+}
+
+.sleep{
+    background-color: rgb(119, 71, 163)
+}
+
+.user-id-card{
+    background-color: rgb(71, 163, 128);
+    padding: 2%;
+    text-align: center;
+    font-family: 'Balsamiq Sans', cursive;
+    margin-top: 2%;
+}
+
+.user-image{
+    border-radius: 75px;
+}
+
+.user-id-card, .name, .address, .email, .daily-step-goal{
+    padding: 7% ;
+}
+
+.friends-goals{
+    background-color: rgb(161, 163, 71)
+}
+
+.friends-list{
+    background-color: rgb(163, 71, 125)
+}

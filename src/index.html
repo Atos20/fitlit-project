@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"></html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <title>Activity Tracker</title>
   </head>
   <body>
-    <h1>Activity Tracker</h1>
+    <nav class="nav-bar">
+    <div class="container-one">
+        <a href=""><i class="burger-menu fas fa-bars"></i></a>
+        <select name="user-drop" id="">
+          <option value="" class="name">User's Name</option>
+        </select>
+      </div>
+      <h1 class="challenge"> Today Challenge: 100000 steps!</h1>
+      <div class="container-two">
+        <input type="date" name="users-date" id="">
+        <button class="find-date">A</button>
+    </div>
+    </nav>
+    <section class="welcome">
+      <h2 class="wel-message">Welcome 'User'! Let's have another great day</h2>
+      <h2 class="status-message">You are in 2nd place, out of all your friends today!</h2>
+    </section>
+    <main class="main">
+      <section class="activity">1
 
+      </section>
+      <section class="hydration">2</section>
+      <section class="sleep">3</section>
+      <section class="user-id-card">
+        <img class="user-image" src="http://i.pravatar.cc/125" alt="">
+        <h2 class="card-name">Mar Gonzales</h2>
+        <h3 class="address">123 Main St Denver CO</h3>
+        <h3 class="email">marGonzales@gmail.com</h3>
+        <h3 class="daily-step-goal">1234567</h3>
+        <h3 class="average-step-goal">1234567</h3>
+      </section>
+      <section class="friends-goals">5</section>
+      <section class="friends-list">6</section>
+    </main>
+    <script src="https://kit.fontawesome.com/6aa953ce7f.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../src/user.js"></script>
+    <script type="text/javascript" src="../src/userRepository.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
     <script type="text/javascript" src="../data/sleep.js"></script>
