@@ -5,17 +5,17 @@ const dailyStepGoal = document.querySelector(".daily-step-goal");
 const averageStepGoal = document.querySelector(".average-step-goal")
 const welMessage = document.querySelector(".wel-message")
 
-let trialData1 = { 
+let trialData1 = {
   "id": 2,
   "name": "Christopher Jonson",
   "address": "123 5th Street, Denver CO 12345",
   "email": "Christopher@hotmail.com",
   "strideLength": 4,
   "dailyStepGoal": 20000,
-  "friends": [ 1, 3, 4] 
+  "friends": [ 1, 3, 4]
 };
 
-let trialData2 = { 
+let trialData2 = {
   "id": 10,
   "name": "Mar Matlak",
   "address": "321 100th Street, Boulder CO 54321",
