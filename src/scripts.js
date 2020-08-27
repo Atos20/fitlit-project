@@ -48,43 +48,18 @@ let loadCardInfo = (user, userRepo) => {
 
 let displayDailyWaterConsumption = (user, today) => {
   const result = hydrationRepo.returnDaysHydration(user.id, today);
-  const waterDaily = {
-    type: 'bar',
-    data: {
-        labels: ['Daily Water Consumption'],
-        datasets: [{
-            label: 'Daily Water Consumption',
-            data: [result, 100],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:      true
-                }
-            }]
-        }
-    }
-}
-  new Chart(waterDailyChart, waterDaily);
-
-  // console.log(waterDaily.data.datasets[0].data);
+  const labels = ['Daily Water Consumption']
+  const listOfDates = [];
+  const dailyTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 100] ,1)
+  new Chart(waterDailyChart, dailyTemplate);
   return result;
 }
 
 let displayWeeklyWaterConsumption = (user, today) => {
   const result = hydrationRepo.returnWeeksHydration(user.id, today);
-  const weeklyTemplate = new ChartTemplate('bar', 'Weekly Water Consumption',result ,1)
-  weeklyTemplate.data.labels = [1, 2, 3, 4, 5, 6, 7];
- const weeklyChart = new Chart(waterWeeklyChart, weeklyTemplate);
+  const labels = [1, 2, 3, 4, 5, 6, 7];
+  const weeklyTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption',result ,1)
+  const weeklyChart = new Chart(waterWeeklyChart, weeklyTemplate);
 }
 
 
