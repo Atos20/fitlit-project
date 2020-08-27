@@ -35,8 +35,6 @@ let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
 let hydrationRepo = new HydrationRepository(dummyHydrationData);
 
-
-
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
   address.innerText = user.address;
@@ -45,24 +43,23 @@ let loadCardInfo = (user, userRepo) => {
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
 }
 
-
 let displayDailyWaterConsumption = (user, today) => {
   const result = hydrationRepo.returnDaysHydration(user.id, today);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
-  const dailyTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 100] ,1)
-  new Chart(waterDailyChart, dailyTemplate);
+  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 100] ,1)
+  const dailyHydrationChart = new Chart(waterDailyChart, dailyHydrationTemplate);
   return result;
 }
 
 let displayWeeklyWaterConsumption = (user, today) => {
-  const result = hydrationRepo.returnWeeksHydration(user.id, today);
-  const labels = [1, 2, 3, 4, 5, 6, 7];
-  const weeklyTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption',result ,1)
-  const weeklyChart = new Chart(waterWeeklyChart, weeklyTemplate);
+  const data = hydrationRepo.returnWeeksHydration(user.id, today);
+  const labels = hydrationRepo.retriveHydrationDates(user.id, today) ;
+  const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
+  console.log(labels)
+  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption',values ,1)
+  const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
-
-
 
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
