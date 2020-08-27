@@ -1,4 +1,4 @@
-const moment = require('moment')
+// const moment = require('moment')
 
 class HydrationRepository {
   constructor(data){
@@ -19,9 +19,17 @@ class HydrationRepository {
   const locateDate = userInfo.find(user => user.date === date)
   const indexOfDate = userInfo.indexOf(locateDate);
   const weekData = userInfo.slice(indexOfDate - 6, indexOfDate + 1)
-  const weekOz = weekData.map(data => ({[data.date]: data.numOunces}))
+  const weekOz = weekData.map(data => (data.numOunces))
   return weekOz
   }
+  returnWeeksHydrationObjects(id, date){
+    const userInfo = this.data.filter(data => data.userID === id);
+    const locateDate = userInfo.find(user => user.date === date)
+    const indexOfDate = userInfo.indexOf(locateDate);
+    const weekData = userInfo.slice(indexOfDate - 6, indexOfDate + 1)
+    const weekOz = weekData.map(data => ({[data.date]: data.numOunces}))
+    return weekOz
+    }
 }
 
 if(typeof module !== 'undefined'){
