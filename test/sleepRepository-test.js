@@ -8,7 +8,8 @@ const dummySleepData = require('../data/dummySleepData');
 
 describe('SleepRepository', function(){
   let sleepRepo
-  beforEach(() => {
+
+  beforeEach(() => {
     sleepRepo = new SleepRepository(dummySleepData)
 
   })
