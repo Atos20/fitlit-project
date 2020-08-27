@@ -53,6 +53,14 @@ class SleepRepository {
       return {[entry.date]: entry.sleepQuality}
     })
   }
+
+  allTimeQualityAverage(){
+    const allHours = this.data.reduce((sum, entry) => {
+      return sum + entry.sleepQuality
+    },0)
+    const average = Math.round(allHours / this.data.length * 10)
+    return average / 10
+  }
 }
 
 if(typeof module !== 'undefined'){
