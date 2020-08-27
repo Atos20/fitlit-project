@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
+    "hydration-test": "test/hydrationRepository-test.js"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
