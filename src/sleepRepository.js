@@ -19,6 +19,20 @@ class SleepRepository {
     let average = Math.round(userTotal / userData.length * 10)
     return (average / 10)
   }
+
+  specificNightsHours(id, date){
+    let specificNight = this.data.find((entry) => {
+      return entry.userID === id && entry.date === date
+    })
+    return specificNight.hoursSlept
+  }
+
+  specificNightsQuality(id, date){
+    let specificNight = this.data.find((entry) => {
+      return entry.userID === id && entry.date === date
+    })
+    return specificNight.sleepQuality
+  }
 }
 
 if(typeof module !== 'undefined'){

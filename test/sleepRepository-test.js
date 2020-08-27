@@ -25,4 +25,12 @@ describe('SleepRepository', function(){
   it('Should calculate average sleep quality all time', () => {
     expect(sleepRepo.averageSleepQualityAllTime(1)).to.equal(2.6)
   })
+
+  it('Should find hours slept on a day for a user', () =>{
+    expect(sleepRepo.specificNightsHours(1, "2020/8/22")).to.equal(4.6)
+  })
+
+  it('Should find quality of sleep on a day for a user', () =>{
+    expect(sleepRepo.specificNightsQuality(1, "2020/8/22")).to.equal(1.4)
+  })
 })
