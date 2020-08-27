@@ -1,9 +1,13 @@
+// const HydrationRepository = require("./hydrationRepository");
+
 const cardName = document.querySelector(".card-name");
 const address = document.querySelector(".address");
 const email = document.querySelector(".email");
 const dailyStepGoal = document.querySelector(".daily-step-goal");
 const averageStepGoal = document.querySelector(".average-step-goal")
-const welMessage = document.querySelector(".wel-message")
+const welMessage = document.querySelector(".wel-message");
+const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
+const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
 
 let trialData1 = {
   "id": 2,
@@ -25,9 +29,13 @@ let trialData2 = {
   "friends": [ 10, 30, 40]
 };
 
+let today = "2019/06/7";
 let user1 = new User(trialData1)
 let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
+let hydrationRepo = new HydrationRepository(dummyHydrationData);
+
+
 
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
@@ -37,6 +45,82 @@ let loadCardInfo = (user, userRepo) => {
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
 }
 
+
+let displayDailyWaterConsumption = (user, today) => {
+  const result = hydrationRepo.returnDaysHydration(user.id, today);
+  const waterDaily = {
+    type: 'bar',
+    data: {
+        labels: ['Daily Water Consumption'],
+        datasets: [{
+            label: 'Daily Water Consumption',
+            data: [result, 100],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:      true
+                }
+            }]
+        }
+    }
+}
+  new Chart(waterDailyChart, waterDaily);
+
+  // console.log(waterDaily.data.datasets[0].data);
+  return result;
+}
+
+let displayWeeklyWaterConsumption = (user, today) => {
+  const result = hydrationRepo.returnWeeksHydration(user.id, today);
+  const waterDaily = {
+    type: 'bar',
+    data: {
+        labels: [1, 2, 3, 4, 5, 6, 7],
+        datasets: [{
+            label: 'Weekly',
+            data: result,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:      true
+                }
+            }]
+        }
+    }
+}
+  new Chart(waterWeeklyChart, waterDaily);
+
+  // console.log(waterDaily.data.datasets[0].data);
+  return result;
+}
+
+
+
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
 }
@@ -44,6 +128,8 @@ let updateWelcomeMessage = (user) => {
 let loadUserData = (user, userRepo) => {
   loadCardInfo(user, userRepo);
   updateWelcomeMessage(user);
+  displayDailyWaterConsumption(user1, today)
+  displayWeeklyWaterConsumption(user1, today)
 }
 
 
