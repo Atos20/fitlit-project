@@ -1,7 +1,7 @@
 const sleepTestData = [
     {
       "userID": 1,
-      "date": "2020/08/14",
+      "date": "2020/8/14",
       "hoursSlept": 6.5,
       "sleepQuality": 4.2
     },
@@ -163,4 +163,3 @@ const sleepTestData = [
     },
   ];
   module.exports = sleepTestData;
-  

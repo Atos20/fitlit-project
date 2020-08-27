@@ -33,6 +33,26 @@ class SleepRepository {
     })
     return specificNight.sleepQuality
   }
+
+  specificWeeksHours(id, date){
+    let userData = this.data.filter((entry) => entry.userID === id)
+    let endWeek = userData.find((entry) => entry.date === date)
+    let index = userData.indexOf(endWeek)
+    let priorWeek = userData.slice(index - 6, index + 1)
+    return priorWeek.map((entry) => {
+      return {[entry.date]: entry.hoursSlept}
+    })
+  }
+
+  specificWeeksQuality(id, date){
+    let userData = this.data.filter((entry) => entry.userID === id)
+    let endWeek = userData.find((entry) => entry.date === date)
+    let index = userData.indexOf(endWeek)
+    let priorWeek = userData.slice(index - 6, index + 1)
+    return priorWeek.map((entry) => {
+      return {[entry.date]: entry.sleepQuality}
+    })
+  }
 }
 
 if(typeof module !== 'undefined'){
