@@ -18,5 +18,11 @@ describe('SleepRepository', function(){
     expect(sleepRepo.data).to.deep.equal(dummySleepData)
   })
 
+  it('Should calculate average sleep hours all time', () => {
+    expect(sleepRepo.averageSleepHoursAllTime(1)).to.equal.(7.4))
+  })
 
+  it('Should calculate average sleep quality all time', () => {
+    expect(sleepRepo.averageSleepQualityAllTime(1)).to.equal.(2.6))
+  })
 })
