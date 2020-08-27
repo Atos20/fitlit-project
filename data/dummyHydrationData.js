@@ -71,4 +71,9 @@ const dummyHydrationData = [
   },
 ]
 
-module.exports = dummyHydrationData
+if(typeof module !== 'undefined'){
+  module.exports = dummyHydrationData
+}
+
+
+

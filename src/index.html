@@ -30,7 +30,15 @@
       <section class="activity">1
 
       </section>
-      <section class="hydration">2</section>
+      <section class="hydration">
+        <div class="container" >
+          <canvas id="daily-hydration-chart" width="200" height="200"></canvas>
+        </div>
+        <div class="container" >
+          <canvas id="weekly-hydration-chart" width="300" height="300"></canvas>
+        </div>
+      </section>
+      
       <section class="sleep">3</section>
       <section class="user-id-card">
         <img class="user-image" src="http://i.pravatar.cc/125" alt="">
@@ -44,8 +52,12 @@
       <section class="friends-list">6</section>
     </main>
     <script src="https://kit.fontawesome.com/6aa953ce7f.js" crossorigin="anonymous"></script>
-    <script src="../node_modules/moment/moment.js"></script>
+    <script type="text/javascript" src="../node_modules/chart.js/dist/Chart.js"></script>
+    <script type="text/javascript" src="../node_modules/moment/moment.js"></script>
     <script type="text/javascript" src="../src/user.js"></script>
+    <script type="text/javascript" src="../data/dummyHydrationData.js"></script>
+    <script type="text/javascript" src="../src/chartTemplate.js"></script>
+    <script type="text/javascript" src="../src/hydrationRepository.js"></script>
     <script type="text/javascript" src="../src/userRepository.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>
     <script type="text/javascript" src="../data/hydration.js"></script>
