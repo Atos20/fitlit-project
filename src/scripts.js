@@ -8,6 +8,10 @@ const averageStepGoal = document.querySelector(".average-step-goal")
 const welMessage = document.querySelector(".wel-message");
 const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
 const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
+const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
+const sleepWeeklyChart = document.querySelector("#pastWeek-sleep-hours-and-quality").getContext('2d');
+const sleepAllTimeChart = document.querySelector("#pastWeek-sleep-hours-and-quality").getContext('2d');
+
 
 let trialData1 = {
   "id": 2,
