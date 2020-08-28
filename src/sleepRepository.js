@@ -62,7 +62,7 @@ class SleepRepository {
     return average / 10
   }
 
-  weeksGoodSleepers(date){
+  weeksGoodSleepers(date) {
     const allUsersAndData = this.data.reduce((acc, obj) => {
       let key = obj.userID
       if (!acc[key]) {
@@ -71,7 +71,17 @@ class SleepRepository {
       acc[key].push(obj)
       return acc
     },{})
-    const usersWeeks =
+  }
+
+  topSleeper(date){
+    const allOnDay = this.data.filter((entry) => {
+      return entry.date === date
+    })
+    const reOrder = allOnDay.sort((a, b) =>{
+      return a.hoursSlept - b.hoursSlept
+    })
+    const topSleeper= reOrder.pop()
+    return topSleeper.userID
   }
 }
 

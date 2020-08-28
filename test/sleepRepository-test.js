@@ -51,7 +51,7 @@ describe('SleepRepository', function(){
   })
 
   it('Should find user with most hours sleep on day', ()=> {
-    expect(sleepRepo.topSleep("2020/8/20")).to.equal(1)
+    expect(sleepRepo.topSleeper("2020/8/20")).to.equal(1)
   })
 
 })
