@@ -32,7 +32,16 @@ class ActivityRepository {
     return average
   }
 
-  
+  stepGoalSuccess(user, date) {
+    const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
+    const desiredDate = retrievedUsersInfo.find(info => info.date === date);
+    if (desiredDate.numSteps > user.dailyStepGoal) {
+        return `Congratulation ${user.name}, you have reached your goal of ${user.dailyStepGoal} steps!!`
+    } else {
+        return `${user.name}, keep walking` 
+    }
+  }
+
 }
 
 if (typeof module !== 'undefined') {
