@@ -53,11 +53,21 @@ class ActivityRepository {
     // console.log(user.dailyStepGoal)
     //  console.log(getBestDatesInfo )
     const justDates = getBestDatesInfo.map( date => date.date);
-    // console.log(justDates)
+    console.log(justDates)
     return justDates
   }
 
-  
+  bestSatirClimbRecord(user) {
+    const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
+    console.log(retrievedUsersInfo )
+    const bestRecord = retrievedUsersInfo.reduce((record, activityInfo) => {
+      if (activityInfo.flightsOfStairs > record.bestClimb) {
+        record.bestClimb = activityInfo.flightsOfStairs
+      }
+      return record
+    },{bestClimb: 0})
+      return bestRecord.bestClimb
+  }
 }
 
 if (typeof module !== 'undefined') {
