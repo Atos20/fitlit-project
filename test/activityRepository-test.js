@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const dummyUserData = require('../data/dummyUserData');
 const User = require('../src/user');
-const activityTestData = require('../data/dummyActivityData');
+const dummyActivityData = require('../data/dummyActivityData');
 const ActivityRepository = require('../src/activityRepository');
 
 describe('ActivityRepository', () => {
@@ -12,12 +12,12 @@ describe('ActivityRepository', () => {
   let userTestData;
   let user1;
   let user;
-  let newActivity;
+  let activityRepo;
 
   beforeEach(() => {
     today = '2020/08/22';
     anotherDay = '2020/08/21'
-    activityTestData = activityTestData;
+    activityTestData = dummyActivityData ;
     userTestData = dummyUserData;
     user1 = userTestData[0] 
     user = new User(user1);
@@ -25,6 +25,7 @@ describe('ActivityRepository', () => {
 });
 
 it('should be a function', () => {
+
     expect(ActivityRepository).to.be.a('function');
   });
 
@@ -33,7 +34,6 @@ it('should be a function', () => {
   })
 
   it('should be able to store all activity Data', () => {
-
     expect(activityRepo.data).to.deep.equal(activityTestData);
   });
 //return the miles a user has walked based on their number of steps
@@ -42,7 +42,7 @@ it('should be a function', () => {
   })
 //how many minutes were they active for a given day (specified by a date)?
   it('should be able return minutes active for a given day', () => {
-    expect(activityRepo.minutesActiveByDate(today)).to.equal(239);
+    expect(activityRepo.minutesActiveByDate(user1, today)).to.equal(239);
   })
 //how many minutes active they average for a given week (7 days)
   it('minutes active for a given week', () => {
@@ -69,5 +69,5 @@ it('should be a function', () => {
         flightsOfStairsAverage: 13
       })
   })
-  
+
 });
