@@ -46,12 +46,17 @@ describe('SleepRepository', function(){
     expect(sleepRepo.allTimeQualityAverage()).to.equal(3.2)
   })
 
-  it.skip('Should find users averaging a sleep quality over 3 in a given week', () => {
-    expect(sleepRepo.weeksGoodSleepers("2020/8/20")).to.deep.equal([3])
+  it('Should find users averaging a sleep quality over 3 in a given week', () => {
+    expect(sleepRepo.weeksGoodSleepers("2020/8/20")).to.deep.equal(['3'])
   })
 
-  it('Should find user with most hours sleep on day', ()=> {
+  it('Should find user with most hours sleep on day', () => {
     expect(sleepRepo.topSleeper("2020/8/20")).to.equal(1)
   })
 
+  it('Should find the month with the best Quality sleep all users and all time', () => {
+    expect(sleepRepo.findBestQualityMonth().to.equal('August'))
+  })
+  //This will require implimentation of moment.js or at least javascript Dates Object
+  //my goal is not to do this now, but to come back later when I refactor all my other code
 })
