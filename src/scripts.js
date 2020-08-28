@@ -9,8 +9,9 @@ const welMessage = document.querySelector(".wel-message");
 const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
 const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
 const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
-const sleepWeeklyChart = document.querySelector("#pastWeek-sleep-hours-and-quality").getContext('2d');
-const sleepAllTimeChart = document.querySelector("#pastWeek-sleep-hours-and-quality").getContext('2d');
+const sleepWeeklyHChart = document.querySelector("#pastWeek-sleep-hours").getContext('2d');
+const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
+const sleepAllTimeChart = document.querySelector("#allTime-sleep-hours-and-quality").getContext('2d');
 
 
 let trialData1 = {
@@ -68,16 +69,30 @@ let displayWeeklyWaterConsumption = (user, today) => {
 
 let displayAllTimeSleepData = (user) => {
   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-  const labels = ['LastNightHours', 'LastNightQuality'];
-  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data, 1)
+  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
+  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data, 1)
   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
 }
 
 let displayDailySleepData = (user, today) => {
   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
-  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-  const dailySleepTemplate = new ChartTemplate('bar', labels, 'All Time Sleep Data', data, 1)
+  const labels = ['LastNightHours', 'LastNightQuality'];
+  const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data, 1)
   const alltimeSleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
+}
+
+let displayWeeklySleepHours= (user, today) => {
+  const data = [sleepRepo.specificWeeksHours(user.id, today)];
+  const labels = ['WeeksHours'];
+  const weeklySleepTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Data", data, 1)
+  const alltimeSleepChart = new Chart(sleepWeeklyHChart, weeklySleepTemplate);
+}
+
+let displayWeeklySleepQuality = (user, today) => {
+  const data = [sleepRepo.specificWeeksQuality(user.id, today)];
+  const labels = ['Weeks Quality'];
+  const weeklySleepTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Data", data, 1)
+  const alltimeSleepChart = new Chart(sleepWeeklyQChart, weeklySleepTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
@@ -91,6 +106,8 @@ let loadUserData = (user, userRepo) => {
   displayWeeklyWaterConsumption(user1, today)
   displayAllTimeSleepData(user1)
   displayDailySleepData(user1, otherToday)
+  displayWeeklySleepHours(user1, otherToday)
+  displayWeeklySleepQuality(user1, otherToday)
 }
 
 
