@@ -17,6 +17,22 @@ class ActivityRepository {
     const desiredDate = retrievedUser.find(info => info.date === date).minutesActive
     return desiredDate
   }
+
+  averageMinutesByWeek(user, date) {
+    const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
+    const desiredDate = retrievedUsersInfo.find(info => info.date === date)
+    const indexOfDate = retrievedUsersInfo.indexOf(desiredDate)
+    // console.log(indexOfDate)
+    const retrievedWeek = retrievedUsersInfo.slice(indexOfDate -6, indexOfDate +1 );
+  
+    const average = retrievedWeek.reduce((total, entry) => {
+      total += entry.minutesActive
+      return Math.round(total / retrievedWeek.length)
+    }, 0)
+    return average
+  }
+
+  
 }
 
 if (typeof module !== 'undefined') {
