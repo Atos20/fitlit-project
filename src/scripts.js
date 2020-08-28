@@ -34,6 +34,7 @@ let trialData2 = {
 };
 
 let today = "2019/06/7";
+let otherToday = "2020/8/22";
 let user1 = new User(trialData1)
 let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
@@ -65,12 +66,18 @@ let displayWeeklyWaterConsumption = (user, today) => {
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
 
-let displayAllTimeSleepData = (user, today) => {
+let displayAllTimeSleepData = (user) => {
   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-console.log(data)
-  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-  const allTimeSleepTemplate = new ChartTemplate('bar', labels, 'All Time Sleep Data', data, 1)
+  const labels = ['LastNightHours', 'LastNightQuality'];
+  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data, 1)
   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
+}
+
+let displayDailySleepData = (user, today) => {
+  const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
+  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
+  const dailySleepTemplate = new ChartTemplate('bar', labels, 'All Time Sleep Data', data, 1)
+  const alltimeSleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
@@ -82,7 +89,8 @@ let loadUserData = (user, userRepo) => {
   updateWelcomeMessage(user);
   displayDailyWaterConsumption(user1, today)
   displayWeeklyWaterConsumption(user1, today)
-  displayAllTimeSleepData(user1, today)
+  displayAllTimeSleepData(user1)
+  displayDailySleepData(user1, otherToday)
 }
 
 
