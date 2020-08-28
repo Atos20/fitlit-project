@@ -4,7 +4,7 @@ const activityTestData = [
       "date": "2020/08/13",
       "numSteps": 8705,
       "minutesActive": 67,
-      "flightsOfStairs": 40
+      "flightsOfStairs": 50
     },
     {
       "userID": 2,
@@ -144,7 +144,7 @@ const activityTestData = [
       "date": "2020/08/18",
       "numSteps": 19974,
       "minutesActive": 80,
-      "flightsOfStairs": 50
+      "flightsOfStairs": 40
     },
     {
       "userID": 2,
