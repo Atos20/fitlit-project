@@ -61,6 +61,18 @@ class SleepRepository {
     const average = Math.round(allHours / this.data.length * 10)
     return average / 10
   }
+
+  weeksGoodSleepers(date){
+    const allUsersAndData = this.data.reduce((acc, obj) => {
+      let key = obj.userID
+      if (!acc[key]) {
+        acc[key] = []
+      }
+      acc[key].push(obj)
+      return acc
+    },{})
+    const usersWeeks =
+  }
 }
 
 if(typeof module !== 'undefined'){
