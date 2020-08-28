@@ -52,4 +52,12 @@ it('should be a function', () => {
   it('should evaluate if users reached their desired step goal or not' , () => {
     expect(activityRepo.stepGoalSuccess(user, today)).to.equal('Paco diPoi, keep walking')
   })
+  ////For a user, find all the days where they exceeded their step goal
+  it('should be able return all the dates where the users exceeded their daily step goal', () => {
+    expect(activityRepo.getReachedStepGoalDays(user)).to.deep.equal([ '2020/08/19', '2020/08/20']);
+  })
+//find their all-time stair climbing record
+  it('should be able to return the user\'s , all-time stair climbing record',() => {
+    expect(activityRepo.bestSatirClimbRecord(user)).to.equal(44)
+}) 
 });
