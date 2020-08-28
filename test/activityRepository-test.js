@@ -21,7 +21,7 @@ describe('ActivityRepository', () => {
     testUsersData = dummyUserData;
     user1 = testUsersData[0] 
     user = new User(user1);
-    newActivityRepo = new ActivityRepository(testActivityData);
+    activityRepo = new ActivityRepository(testActivityData);
 });
 
 it('should be a function', () => {
@@ -29,24 +29,27 @@ it('should be a function', () => {
   });
 
   it('should be able to instantiate a new activity repository class', () => {
-    expect(newActivityRepo).to.be.an.instanceOf(ActivityRepository);
+    expect(activityRepo).to.be.an.instanceOf(ActivityRepository);
   })
 
   it('should be able to store all activity Data', () => {
 
-    expect(newActivityRepo.data).to.deep.equal(testActivityData);
+    expect(activityRepo.data).to.deep.equal(testActivityData);
   });
 //return the miles a user has walked based on their number of steps
   it('return the miles a user has walked based on their number of steps by date', () => {
-    expect(newActivityRepo.getMilesPerDay(user1, today)).to.equal(6);
+    expect(activityRepo.getMilesPerDay(user1, today)).to.equal(6);
   })
 //how many minutes were they active for a given day (specified by a date)?
   it('should be able return minutes active for a given day', () => {
-    expect(newActivityRepo.minutesActiveByDate(today)).to.equal(239);
+    expect(activityRepo.minutesActiveByDate(today)).to.equal(239);
   })
 //how many minutes active they average for a given week (7 days)
   it('minutes active for a given week', () => {
-    expect(newActivityRepo.averageMinutesByWeek(user, date)).to.equal(38);
+    expect(activityRepo.averageMinutesByWeek(user,today)).to.equal(38);
   })
-
+////For a user, did they reach their step goal for a given day (specified by a date)?
+  it('should evaluate if users reached their desired step goal or not' , () => {
+    expect(activityRepo.stepGoalSuccess(user, today)).to.equal('Paco diPoi, keep walking')
+  })
 });
