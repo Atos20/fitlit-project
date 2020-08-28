@@ -38,6 +38,7 @@ let user1 = new User(trialData1)
 let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
 let hydrationRepo = new HydrationRepository(dummyHydrationData);
+let sleepRepo = new SleepRepository(sleepTestData);
 
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
@@ -60,9 +61,16 @@ let displayWeeklyWaterConsumption = (user, today) => {
   const data = hydrationRepo.returnWeeksHydration(user.id, today);
   const labels = hydrationRepo.retriveHydrationDates(user.id, today) ;
   const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
-  console.log(labels)
-  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption',values ,1)
+  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption', values, 1)
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
+}
+
+let displayAllTimeSleepData = (user, today) => {
+  const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
+console.log(data)
+  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
+  const allTimeSleepTemplate = new ChartTemplate('bar', labels, 'All Time Sleep Data', data, 1)
+  const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
