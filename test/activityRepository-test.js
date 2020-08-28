@@ -8,8 +8,8 @@ const ActivityRepository = require('../src/activityRepository');
 describe('ActivityRepository', () => {
   let today ;
   let anotherDay;
-  let testActivityData;
-  let testUsersData;
+  let activityTestData;
+  let userTestData;
   let user1;
   let user;
   let newActivity;
@@ -17,11 +17,11 @@ describe('ActivityRepository', () => {
   beforeEach(() => {
     today = '2020/08/22';
     anotherDay = '2020/08/21'
-    testActivityData = activityTestData;
-    testUsersData = dummyUserData;
-    user1 = testUsersData[0] 
+    activityTestData = activityTestData;
+    userTestData = dummyUserData;
+    user1 = userTestData[0] 
     user = new User(user1);
-    activityRepo = new ActivityRepository(testActivityData);
+    activityRepo = new ActivityRepository(activityTestData);
 });
 
 it('should be a function', () => {
@@ -34,7 +34,7 @@ it('should be a function', () => {
 
   it('should be able to store all activity Data', () => {
 
-    expect(activityRepo.data).to.deep.equal(testActivityData);
+    expect(activityRepo.data).to.deep.equal(activityTestData);
   });
 //return the miles a user has walked based on their number of steps
   it('return the miles a user has walked based on their number of steps by date', () => {
@@ -54,10 +54,20 @@ it('should be a function', () => {
   })
   ////For a user, find all the days where they exceeded their step goal
   it('should be able return all the dates where the users exceeded their daily step goal', () => {
-    expect(activityRepo.getReachedStepGoalDays(user)).to.deep.equal([ '2020/08/19', '2020/08/20']);
+    expect(activityRepo.getReachedStepGoalDays(user)).to.deep.equal(['2020/08/18', '2020/08/19', '2020/08/20']);
   })
 //find their all-time stair climbing record
   it('should be able to return the user\'s , all-time stair climbing record',() => {
-    expect(activityRepo.bestSatirClimbRecord(user)).to.equal(44)
+    expect(activityRepo.bestSatirClimbRecord(user)).to.equal(50);
 }) 
+// average from all users from a spicific date
+  it('should be able to list the average of all activities by date for all users', () => {
+    expect(activityRepo.averageAllUserActivities(date)).to.deep.equal(
+      {
+        numStepsAverage: 1233,
+        minutesActiveAverage: 82,
+        flightsOfStairsAverage: 13
+      })
+  })
+  
 });
