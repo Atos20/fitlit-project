@@ -46,7 +46,12 @@ describe('SleepRepository', function(){
     expect(sleepRepo.allTimeQualityAverage()).to.equal(3.2)
   })
 
-  it('Should find users averaging a sleep quality over 3 in a given week', () => {
+  it.skip('Should find users averaging a sleep quality over 3 in a given week', () => {
     expect(sleepRepo.weeksGoodSleepers("2020/8/20")).to.deep.equal([3])
   })
+
+  it('Should find user with most hours sleep on day', ()=> {
+    expect(sleepRepo.topSleep("2020/8/20")).to.equal(1)
+  })
+
 })
