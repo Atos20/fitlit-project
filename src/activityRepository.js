@@ -42,6 +42,22 @@ class ActivityRepository {
     }
   }
 
+  getReachedStepGoalDays(user) {
+    const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
+    const getBestDatesInfo = retrievedUsersInfo.reduce((bestDates, activityInfo) => {
+     if (activityInfo.numSteps > user.dailyStepGoal) {
+       bestDates.push(activityInfo)
+  }
+    return bestDates
+  }, [])
+    // console.log(user.dailyStepGoal)
+    //  console.log(getBestDatesInfo )
+    const justDates = getBestDatesInfo.map( date => date.date);
+    // console.log(justDates)
+    return justDates
+  }
+
+  
 }
 
 if (typeof module !== 'undefined') {
