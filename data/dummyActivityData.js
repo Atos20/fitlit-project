@@ -142,9 +142,9 @@ const activityTestData = [
     {
       "userID": 1,
       "date": "2020/08/18",
-      "numSteps": 9974,
+      "numSteps": 19974,
       "minutesActive": 80,
-      "flightsOfStairs": 40
+      "flightsOfStairs": 50
     },
     {
       "userID": 2,
