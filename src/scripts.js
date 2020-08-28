@@ -82,6 +82,7 @@ let loadUserData = (user, userRepo) => {
   updateWelcomeMessage(user);
   displayDailyWaterConsumption(user1, today)
   displayWeeklyWaterConsumption(user1, today)
+  displayAllTimeSleepData(user1, today)
 }
 
 
