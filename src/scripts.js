@@ -12,6 +12,11 @@ const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality")
 const sleepWeeklyHChart = document.querySelector("#pastWeek-sleep-hours").getContext('2d');
 const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
 const sleepAllTimeChart = document.querySelector("#allTime-sleep-hours-and-quality").getContext('2d');
+const dailySteps = document.querySelector("#daily-steps")
+const minutesActive = document.querySelector("#minutes-active")
+const distanceWalked = document.querySelector("#distance-walked")
+const activityVsAllChart = document.querySelector("#activity-data-vs-all-daily").getContext('2d');
+const activityWeeklyChart = document.querySelector("#aweekly-activty").getContext('2d');
 
 
 let trialData1 = {
