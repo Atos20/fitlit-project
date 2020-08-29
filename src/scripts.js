@@ -46,6 +46,7 @@ let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
 let hydrationRepo = new HydrationRepository(dummyHydrationData);
 let sleepRepo = new SleepRepository(sleepTestData);
+let activityRepo = new ActivityRepository(dummyActivityData);
 
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
@@ -101,6 +102,13 @@ let displayWeeklySleepQuality = (user, today) => {
   const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data, 1)
   const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
 }
+
+let displayDailySteps = (user, today) => {
+
+}
+let displayDailyMiles
+let displayDailyActivityVsAll
+let displayWeeklyActivity
 
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
