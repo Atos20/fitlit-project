@@ -104,10 +104,13 @@ let displayWeeklySleepQuality = (user, today) => {
 }
 
 let displayDailySteps = (user, date) => {
-  console.log(user)
   dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
 }
-let displayDailyMiles
+
+let displayDailyMiles = (user, date) => {
+  distanceWalked.innerText = `${activityRepo.getMilesPerDay(user, date)} miles`
+}
+
 let displayDailyActivityVsAll
 let displayWeeklyActivity
 
@@ -125,6 +128,7 @@ let loadUserData = (user, userRepo) => {
   displayWeeklySleepHours(user1, otherToday)
   displayWeeklySleepQuality(user1, otherToday)
   displayDailySteps(user1, otherToday)
+  displayDailyMiles(user1, otherToday)
 }
 
 
