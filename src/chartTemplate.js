@@ -1,9 +1,9 @@
 class ChartTemplate {
-  constructor(type, labels, title, data, border, backgroundColors, borderColors) {
+  constructor(type, labels, title, data, dataSets) {
     this.type = type, //needs to be a string
     this.data = {
       labels: labels || [], //need to be an array
-      datasets: [{
+      datasets: dataSets || [{
         label: title,
         data: data || [], //needs to be an array
         backgroundColor: backgroundColors || [
@@ -15,7 +15,7 @@ class ChartTemplate {
           'rgba(255, 159, 64, 0.2)',
           'rgba(255, 206, 86, 0.2)'
         ],
-        borderColor: borderColors || [
+        borderColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
@@ -24,7 +24,7 @@ class ChartTemplate {
           'rgba(255, 159, 64, 1)',
           'rgba(255, 206, 86, 1)'
         ],
-        borderWidth: border
+        borderWidth: 1
       }]
     },
     this.options = {
