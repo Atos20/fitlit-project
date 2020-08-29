@@ -280,5 +280,7 @@ const activityTestData = [
       "flightsOfStairs": 45
     }
   ];
-  
-  module.exports =  activityTestData;
+
+  if (typeof module !== 'undefined'){
+    module.exports =  activityTestData;
+  }
