@@ -83,7 +83,7 @@ it('should be a function', () => {
     expect(activityRepo.getKeyAllActivities(today)).to.deep.equal(['numStepsAverage','minutesActiveAverage', 'flightsOfStairsAverage'])
   });
 
-  it('should return an array of the keys from the average all activities by date', () => {
+  it('should return an array of the values from the average all activities by date', () => {
     activityRepo.averageAllUserActivities(today)
     expect(activityRepo.getValuesAllActivities(today)).to.deep.equal([1233,82, 13])
   });
