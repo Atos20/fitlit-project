@@ -112,6 +112,20 @@ class ActivityRepository {
     return getNames
   }
 
+  returnPriorWeekDates(user, date) {
+    const userEntries = this.data.filter((entry)=>{
+      return entry.userID === user.id
+    })
+    const specificDate = userEntries.find((entry)=>{
+      return entry.date === date
+    })
+    const entryDateIndex = userEntries.indexOf(specificDate)
+    const priorUserWeek = userEntries.slice(entryDateIndex - 6, entryDateIndex +1)
+    return priorUserWeek.map((entry)=>{
+      return entry.date
+    })
+  }
+
 }
 
 if (typeof module !== 'undefined') {
