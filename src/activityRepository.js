@@ -32,7 +32,6 @@ class ActivityRepository {
   stepGoalSuccess(user, date) {
     const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
     const desiredDate = retrievedUsersInfo.find(info => info.date === date);
-    console.log(date)
     if (desiredDate.numSteps > user.dailyStepGoal) {
         return `Congratulation ${user.name}, you have reached your goal of ${user.dailyStepGoal} steps!!`
     } else {
