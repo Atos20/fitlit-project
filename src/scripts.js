@@ -69,21 +69,21 @@ let displayWeeklyWaterConsumption = (user, today) => {
   const data = hydrationRepo.returnWeeksHydration(user.id, today);
   const labels = hydrationRepo.retriveHydrationDates(user.id, today) ;
   const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
-  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption', values, 1)
+  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption', values)
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
 
 let displayAllTimeSleepData = (user) => {
   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
   const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data, 1)
+  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data)
   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
 }
 
 let displayDailySleepData = (user, today) => {
   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
   const labels = ['LastNightHours', 'LastNightQuality'];
-  const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data, 1)
+  const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
   const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
 }
 
@@ -91,7 +91,7 @@ let displayWeeklySleepHours= (user, today) => {
   const results= sleepRepo.specificWeeksHours(user.id, today)
   const data = Object.values(results)
   const labels = Object.keys(results)
-  const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data, 1)
+  const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data)
   const weeklySleepHChart = new Chart(sleepWeeklyHChart, weeklySleepHTemplate);
 }
 
@@ -99,20 +99,41 @@ let displayWeeklySleepQuality = (user, today) => {
   const results = sleepRepo.specificWeeksQuality(user.id, today);
   const data = Object.values(results)
   const labels = Object.keys(results)
-  const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data, 1)
+  const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data)
   const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
 }
 
 let displayDailySteps = (user, date) => {
   dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
+  console.log(activityRepo.returnPriorWeekDates(user, date))
 }
 
 let displayDailyMiles = (user, date) => {
   distanceWalked.innerText = `${activityRepo.getMilesPerDay(user, date)} miles`
 }
 
-let displayDailyActivityVsAll
-let displayWeeklyActivity
+let displayDailyActivityVsAll = (user, date) => {
+
+}
+
+// let displayWeeklyActivity = (user, date) => {
+//   const weekDates = activityRepo.returnPriorWeekDates(user, date)
+//   // const weeklyMilesPerDay =
+//   // const weeklyFlightPerDay =
+//   // const weeklyMinutesActive
+//   const data = {
+//     dataSets = [{
+//       label: 'Bar Dataset',
+//             data: [10, 20, 30, 40]
+//     },{
+//       label: 'Bar Dataset',
+//             data: [15, 25, 36, 46]
+//     }]
+//   }
+//   const labels = weekDates
+//   const weeklyActivityTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data, 1)
+//   const weeklyActivityChart = new Chart(activityWeeklyChart, weeklyActivityTemplate);
+// }
 
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
@@ -129,6 +150,7 @@ let loadUserData = (user, userRepo) => {
   displayWeeklySleepQuality(user1, otherToday)
   displayDailySteps(user1, otherToday)
   displayDailyMiles(user1, otherToday)
+  displayWeeklyActivity(user1, otherToday)
 }
 
 
