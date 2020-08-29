@@ -80,12 +80,12 @@ it('should be a function', () => {
   
   it('should return an array of the keys from the average all activities by date', () => {
     activityRepo.averageAllUserActivities(today)
-    expect(activityRepo.getKeyAllActivities()).to.equal(['numStepsAverage','minutesActiveAverage', 'flightsOfStairsAverage'])
+    expect(activityRepo.getKeyAllActivities(today)).to.deep.equal(['numStepsAverage','minutesActiveAverage', 'flightsOfStairsAverage'])
   });
 
   it('should return an array of the keys from the average all activities by date', () => {
     activityRepo.averageAllUserActivities(today)
-    expect(activityRepo.getValuesAllActivities()).to.equal([1233,82, 12])
+    expect(activityRepo.getValuesAllActivities(today)).to.deep.equal([1233,82, 13])
   });
 
   it('should be able to return a list of all user\'s names who have exceeded 250 minutes of activity by date' , () => {

@@ -87,6 +87,24 @@ class ActivityRepository {
   }
   //I am thinking about writting a function that would be able to calculate the average
   //so this part could be better refactored 
+  getKeyAllActivities(date){
+    const result = [this.averageAllUserActivities(date)]
+    console.log(result)
+    const dates = result.reduce((acc, curr) => {
+      acc.push(...Object.keys(curr))
+      return acc
+    }, [])
+    return dates
+  }
+
+  getValuesAllActivities(date){
+    const result = [this.averageAllUserActivities(date)]
+    const dates = result.reduce((acc, curr) => {
+      acc.push(...Object.values(curr))
+      return acc
+    }, [])
+    return dates
+  }
 
   getMostActivePeople(usersData, date){
     const listByDate = this.data.filter(entry => entry.date === date);
@@ -99,7 +117,7 @@ class ActivityRepository {
     // console.log(getIDs)
     const getNames = getIDs.map(id => {
         const user = usersData.find(user => user.id === id);
-        console.log(user)
+        // console.log(user)
         return user.name
     })
     return getNames
