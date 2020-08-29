@@ -78,21 +78,23 @@ let displayDailySleepData = (user, today) => {
   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
   const labels = ['LastNightHours', 'LastNightQuality'];
   const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data, 1)
-  const alltimeSleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
+  const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
 }
 
 let displayWeeklySleepHours= (user, today) => {
-  const data = [sleepRepo.specificWeeksHours(user.id, today)];
-  const labels = ['WeeksHours'];
-  const weeklySleepTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Data", data, 1)
-  const alltimeSleepChart = new Chart(sleepWeeklyHChart, weeklySleepTemplate);
+  const results= sleepRepo.specificWeeksHours(user.id, today)
+  const data = Object.values(results)
+  const labels = Object.keys(results)
+  const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data, 1)
+  const weeklySleepHChart = new Chart(sleepWeeklyHChart, weeklySleepHTemplate);
 }
 
 let displayWeeklySleepQuality = (user, today) => {
-  const data = [sleepRepo.specificWeeksQuality(user.id, today)];
-  const labels = ['Weeks Quality'];
-  const weeklySleepTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Data", data, 1)
-  const alltimeSleepChart = new Chart(sleepWeeklyQChart, weeklySleepTemplate);
+  const results = sleepRepo.specificWeeksQuality(user.id, today);
+  const data = Object.values(results)
+  const labels = Object.keys(results)
+  const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data, 1)
+  const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
