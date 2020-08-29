@@ -16,7 +16,7 @@ const dailySteps = document.querySelector("#daily-steps")
 const minutesActive = document.querySelector("#minutes-active")
 const distanceWalked = document.querySelector("#distance-walked")
 const activityVsAllChart = document.querySelector("#activity-data-vs-all-daily").getContext('2d');
-const activityWeeklyChart = document.querySelector("#aweekly-activty").getContext('2d');
+const activityWeeklyChart = document.querySelector("#weekly-activty").getContext('2d');
 
 
 let trialData1 = {
@@ -40,13 +40,13 @@ let trialData2 = {
 };
 
 let today = "2019/06/7";
-let otherToday = "2020/8/22";
-let user1 = new User(trialData1)
+let otherToday = "2020/08/22";
+let user1 = new User(dummyUserData[0])
 let user2 = new User(trialData2)
 let userRepo = new UserRepository([user1, user2])
 let hydrationRepo = new HydrationRepository(dummyHydrationData);
 let sleepRepo = new SleepRepository(sleepTestData);
-let activityRepo = new ActivityRepository(dummyActivityData);
+let activityRepo = new ActivityRepository(activityTestData);
 
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
@@ -103,8 +103,9 @@ let displayWeeklySleepQuality = (user, today) => {
   const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
 }
 
-let displayDailySteps = (user, today) => {
-
+let displayDailySteps = (user, date) => {
+  console.log(user)
+  dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
 }
 let displayDailyMiles
 let displayDailyActivityVsAll
@@ -123,6 +124,7 @@ let loadUserData = (user, userRepo) => {
   displayDailySleepData(user1, otherToday)
   displayWeeklySleepHours(user1, otherToday)
   displayWeeklySleepQuality(user1, otherToday)
+  displayDailySteps(user1, otherToday)
 }
 
 
