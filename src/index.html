@@ -28,18 +28,32 @@
     </section>
     <main class="main">
       <section class="activity">1
-
+        <h3>Activity Data</h3>
       </section>
       <section class="hydration">
-        <div class="container" >
+        <h3>Hydration Data</h3>
+        <div class="dailyHydrationData">
           <canvas id="daily-hydration-chart" width="200" height="200"></canvas>
         </div>
-        <div class="container" >
+        <div class="weeklyHydrationData">
           <canvas id="weekly-hydration-chart" width="300" height="300"></canvas>
         </div>
       </section>
-      
-      <section class="sleep">3</section>
+      <section class="sleep">
+        <h3>Sleep Data</h3>
+        <div class="dailySleepHoursAndQuality" >
+          <canvas id="daily-sleep-hours-and-quality" width="300" height="300"></canvas>
+        </div>
+        <div class="pastWeekSleepHours" >
+          <canvas id="pastWeek-sleep-hours" width="300" height="300"></canvas>
+        </div>
+        <div class="pastWeekSleepQuality" >
+          <canvas id="pastWeek-sleep-quality" width="300" height="300"></canvas>
+        </div>
+        <div class="allTimeSleepHoursAndQuality" >
+          <canvas id="allTime-sleep-hours-and-quality" width="300" height="300"></canvas>
+        </div>
+      </section>
       <section class="user-id-card">
         <img class="user-image" src="http://i.pravatar.cc/125" alt="">
         <h2 class="card-name">Mar Gonzales</h2>
@@ -55,8 +69,10 @@
     <script type="text/javascript" src="../node_modules/chart.js/dist/Chart.js"></script>
     <script type="text/javascript" src="../node_modules/moment/moment.js"></script>
     <script type="text/javascript" src="../src/user.js"></script>
+    <script type="text/javascript" src="../data/dummySleepData.js"></script>
     <script type="text/javascript" src="../data/dummyHydrationData.js"></script>
     <script type="text/javascript" src="../src/chartTemplate.js"></script>
+    <script type="text/javascript" src="../src/sleepRepository.js"></script>
     <script type="text/javascript" src="../src/hydrationRepository.js"></script>
     <script type="text/javascript" src="../src/userRepository.js"></script>
     <script type="text/javascript" src="../data/users.js"></script>

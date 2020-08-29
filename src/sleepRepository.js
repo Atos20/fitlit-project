@@ -39,9 +39,15 @@ class SleepRepository {
     let endWeek = userData.find((entry) => entry.date === date)
     let index = userData.indexOf(endWeek)
     let priorWeek = userData.slice(index - 6, index + 1)
-    return priorWeek.map((entry) => {
+    let arrWeek = priorWeek.map((entry) => {
       return {[entry.date]: entry.hoursSlept}
     })
+    return arrWeek.reduce((acc, obj) => {
+      let value = Object.values(obj)[0]
+      let key = Object.keys(obj)[0]
+      acc[key] = value
+      return acc
+    }, {})
   }
 
   specificWeeksQuality(id, date) {
@@ -49,9 +55,15 @@ class SleepRepository {
     let endWeek = userData.find((entry) => entry.date === date)
     let index = userData.indexOf(endWeek)
     let priorWeek = userData.slice(index - 6, index + 1)
-    return priorWeek.map((entry) => {
+    let arrWeek = priorWeek.map((entry) => {
       return {[entry.date]: entry.sleepQuality}
     })
+    return arrWeek.reduce((acc, obj) => {
+      let value = Object.values(obj)[0]
+      let key = Object.keys(obj)[0]
+      acc[key] = value
+      return acc
+    }, {})
   }
 
   allTimeQualityAverage() {
@@ -71,13 +83,9 @@ class SleepRepository {
       acc[key].push(obj)
       return acc
     }, {})
-    console.log(allUsersAndData)
     const numUsers = Object.keys(allUsersAndData)
-    console.log(numUsers)
     const user1Date = (entry) => entry.date === date
-    console.log(allUsersAndData['1'])
     const dateIndex = allUsersAndData['1'].findIndex(user1Date)
-    console.log(dateIndex)
     numUsers.forEach((item) => {
       allUsersAndData[item] = allUsersAndData[item].slice(dateIndex - 6, dateIndex + 1)
       allUsersAndData[item] = allUsersAndData[item].reduce((sum, day) => {
@@ -85,16 +93,13 @@ class SleepRepository {
       }, 0)
       allUsersAndData[item] = allUsersAndData[item] / 7
     })
-    console.log(allUsersAndData)
     const allHours = this.data.reduce((sum, entry) => {
       return sum + entry.sleepQuality
     }, 0)
     const averageQualityThisWeekAllUsers = Object.entries(allUsersAndData)
-    console.log(averageQualityThisWeekAllUsers)
     averageQualityThisWeekAllUsers.sort((a,b) => {
         return b[1] - a[1]
     })
-    console.log(averageQualityThisWeekAllUsers)
     let averagingOver3 = []
     averageQualityThisWeekAllUsers.forEach((user) => {
       if (user[1] > 3) {averagingOver3.push(user[0])}
