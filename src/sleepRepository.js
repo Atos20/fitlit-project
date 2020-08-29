@@ -39,9 +39,15 @@ class SleepRepository {
     let endWeek = userData.find((entry) => entry.date === date)
     let index = userData.indexOf(endWeek)
     let priorWeek = userData.slice(index - 6, index + 1)
-    return priorWeek.map((entry) => {
+    let arrWeek = priorWeek.map((entry) => {
       return {[entry.date]: entry.hoursSlept}
     })
+    return arrWeek.reduce((acc, obj) => {
+      let value = Object.values(obj)[0]
+      let key = Object.keys(obj)[0]
+      acc[key] = value
+      return acc
+    }, {})
   }
 
   specificWeeksQuality(id, date) {
@@ -49,9 +55,15 @@ class SleepRepository {
     let endWeek = userData.find((entry) => entry.date === date)
     let index = userData.indexOf(endWeek)
     let priorWeek = userData.slice(index - 6, index + 1)
-    return priorWeek.map((entry) => {
+    let arrWeek = priorWeek.map((entry) => {
       return {[entry.date]: entry.sleepQuality}
     })
+    return arrWeek.reduce((acc, obj) => {
+      let value = Object.values(obj)[0]
+      let key = Object.keys(obj)[0]
+      acc[key] = value
+      return acc
+    }, {})
   }
 
   allTimeQualityAverage() {
