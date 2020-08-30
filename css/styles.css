@@ -2,8 +2,12 @@
     box-sizing: border-box;
 }
 
+.challenge, .challenge, .wel-message, .status-message {
+    font-family: 'Comfortaa', cursive;
+}
+
 .nav-bar, .welcome{
-    background-color: rgb(53 158 155);
+    background-color: #292F36;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -11,10 +15,20 @@
     padding: 3% 2% 3% 2%;
 }
 
-.user-drop{
+.user-drop, .user-date{
     height: 2em;
     width: 14em;
     border: none;
+    font-family: 'Comfortaa', cursive;
+    padding: 1% 0% 1% 5%;
+}
+
+.challenge{
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5em;
+    word-spacing: 8px;
+    letter-spacing: 2px;
+    color: #FFE66D;
 }
 
 .container-one{
@@ -26,23 +40,32 @@
 }
 
 .welcome{
-    background-color: rgb(17, 160, 29);
+    background-color: #586574;
 }
 
 .main{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 40%);
 }
 
 .hydration{
-    /* background-color: rgb(71, 103, 163) */
+    display: flex;
+    flex-direction: rows;
 }
 
 .activity{
-    /* background-color: rgb(163, 71, 71) */
+    padding: 2%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .sleep{
-    /* background-color: rgb(119, 71, 163) */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-area: 2/ 2/ 3 / 3;
 }
 
 .user-id-card{
@@ -58,13 +81,15 @@
 }
 
 .user-id-card, .name, .address, .email, .daily-step-goal{
-    padding: 7% ;
+    padding: 4% ;
 }
 
 .friends-goals{
-    background-color: rgb(161, 163, 71)
+    background-color: rgb(161, 163, 71);
+    grid-area: 3/ 1/ 3 / 3;
 }
 
 .friends-list{
-    background-color: rgb(163, 71, 125)
+    background-color: rgb(163, 71, 125);
+    grid-area: 2/ 3/ 4 / 4;
 }
