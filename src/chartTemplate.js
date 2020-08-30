@@ -1,9 +1,9 @@
 class ChartTemplate {
-  constructor(type, labels, title, data, dataSets) {
+  constructor(type, labels, title, data) {
     this.type = type, //needs to be a string
     this.data = {
       labels: labels || [], //need to be an array
-      datasets: dataSets || [{
+      datasets: [{
         label: title,
         data: data || [], //needs to be an array
         backgroundColor: [
