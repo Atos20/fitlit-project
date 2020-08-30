@@ -28,11 +28,11 @@
       <h1 class="status-message">You are in 2nd place, out of all your friends today!</h1>
     </section>
     <main class="main">
-      <section class="activity">
+      <section class="activity-section">
         <h3>Activity Data</h3>
         <div class="daily-steps">
-          <h5>Daily Steps</h5>
-          <h5 id="daily-steps"></h5>
+          <h3>Daily Steps</h3>
+          <h3 id="daily-steps"></h3>
         </div>
         <div class="minutes-active">
           <h5>Minutes Active</h5>
@@ -42,15 +42,15 @@
           <h5>Distance Walked</h5>
           <h5 id="distance-walked"></h5>
         </div>
-        <div class="activity-data-vs-all-daily">
+        <div class="activity-data-vs-all-daily-chart">
           <canvas id="activity-data-vs-all-daily" width="200" height="200"></canvas>
         </div>
-        <div class="weekly-activity">
+        <div class="weekly-activity-chart">
           <canvas id="weekly-activty" width="200" height="200"></canvas>
         </div>
       </section>
-      <section class="hydration">
-        <h3>Hydration Data</h3>
+      <section class="hydration-section">
+        <h3 class="hydration-title">Hydration Data</h3>
         <div class="dailyHydrationData">
           <canvas id="daily-hydration-chart" width="200" height="200"></canvas>
         </div>
@@ -58,17 +58,17 @@
           <canvas id="weekly-hydration-chart" width="300" height="300"></canvas>
         </div>
       </section>
-      <section class="sleep">
-        <h3>Sleep Data</h3>
-        <div class="dailySleepHoursAndQuality" >
+      <section class="sleep-section">
+        <h3 class="sleep-title">Sleep Data</h3>
+        <!-- <div class="dailySleepHoursAndQuality" >
           <canvas id="daily-sleep-hours-and-quality" width="300" height="300"></canvas>
-        </div>
+        </div> -->
         <div class="pastWeekSleepHours" >
           <canvas id="pastWeek-sleep-hours" width="300" height="300"></canvas>
         </div>
-        <div class="pastWeekSleepQuality" >
+        <!-- <div class="pastWeekSleepQuality" >
           <canvas id="pastWeek-sleep-quality" width="300" height="300"></canvas>
-        </div>
+        </div> -->
         <div class="allTimeSleepHoursAndQuality" >
           <canvas id="allTime-sleep-hours-and-quality" width="300" height="300"></canvas>
         </div>
