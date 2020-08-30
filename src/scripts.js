@@ -8,9 +8,9 @@ const averageStepGoal = document.querySelector(".average-step-goal")
 const welMessage = document.querySelector(".wel-message");
 const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
 const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
-const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
+// const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
 const sleepWeeklyHChart = document.querySelector("#pastWeek-sleep-hours").getContext('2d');
-const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
+// const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
 const sleepAllTimeChart = document.querySelector("#allTime-sleep-hours-and-quality").getContext('2d');
 const dailySteps = document.querySelector("#daily-steps")
 const minutesActive = document.querySelector("#minutes-active")
@@ -80,15 +80,14 @@ let displayWeeklyWaterConsumption = (user, today) => {
 //   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
 // }
 
-let displayDailySleepData = (user, today) => {
-  const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
-  const labels = ['LastNightHours', 'LastNightQuality'];
-  const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
-  const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
-}
+// let displayDailySleepData = (user, today) => {
+//   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
+//   const labels = ['LastNightHours', 'LastNightQuality'];
+//   const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
+//   const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
+// }
 
 let displayDailyAndAverageSleepData = (user, today) => {
-  console.log(today)
   const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
   const dailyData = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
   let sleepTemplate = {
@@ -234,7 +233,7 @@ new Chart(sleepWeeklyHChart, sleepTemplate)
 
 let displayDailySteps = (user, date) => {
   dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
-  console.log(activityRepo.returnPriorWeekDates(user, date))
+  // console.log(activityRepo.returnPriorWeekDates(user, date))
 }
 
 let displayDailyMiles = (user, date) => {
