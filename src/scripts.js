@@ -60,7 +60,7 @@ let displayDailyWaterConsumption = (user, today) => {
   const result = hydrationRepo.returnDaysHydration(user.id, today);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
-  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 100] ,1)
+  const dailyHydrationTemplate = new ChartTemplate('polarArea', labels, 'Daily Water Consumption',[result, 50])
   const dailyHydrationChart = new Chart(waterDailyChart, dailyHydrationTemplate);
   return result;
 }
@@ -73,18 +73,81 @@ let displayWeeklyWaterConsumption = (user, today) => {
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
 
-let displayAllTimeSleepData = (user) => {
-  const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-  const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-  const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data)
-  const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
-}
+// let displayAllTimeSleepData = (user) => {
+//   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
+//   const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
+//   const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data)
+//   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
+// }
 
 let displayDailySleepData = (user, today) => {
   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
   const labels = ['LastNightHours', 'LastNightQuality'];
   const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
   const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
+}
+
+let displayDailyAndAverageSleepData = (user, today) => {
+  console.log(today)
+  const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
+  const dailyData = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
+  let sleepTemplate = {
+    type: 'bar',
+    data: {
+        labels: ['Sleep Hours', 'Sleep Quality'],
+        datasets: [{
+            label: 'Daily Data',
+            data: dailyData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Average', 
+            data: aveData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
+new Chart(sleepAllTimeChart, sleepTemplate)
 }
 
 let displayWeeklySleepHours= (user, today) => {
@@ -275,16 +338,16 @@ let updateWelcomeMessage = (user) => {
 let loadUserData = (user, userRepo) => {
   loadCardInfo(user, userRepo);
   updateWelcomeMessage(user);
-  displayDailyWaterConsumption(user1, today)
-  displayWeeklyWaterConsumption(user1, today)
-  displayAllTimeSleepData(user1)
-  displayDailySleepData(user1, otherToday)
-  displayWeeklySleepHours(user1, otherToday)
-  displayWeeklySleepQuality(user1, otherToday)
-  displayDailySteps(user1, otherToday)
-  displayDailyMiles(user1, otherToday)
-  displayWeeklyActivity(user1, otherToday)
-  displayDailyActivityVsAll(user1, otherToday)
+  displayDailyWaterConsumption(user, today)
+  displayWeeklyWaterConsumption(user, today)
+  displayDailyAndAverageSleepData(user, otherToday)
+  // displayDailySleepData(user, otherToday)
+  displayWeeklySleepHours(user, otherToday)
+  displayWeeklySleepQuality(user, otherToday)
+  displayDailySteps(user, otherToday)
+  displayDailyMiles(user, otherToday)
+  displayWeeklyActivity(user, otherToday)
+  displayDailyActivityVsAll(user, otherToday)
 }
 
 
