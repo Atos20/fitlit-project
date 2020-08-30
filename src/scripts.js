@@ -116,24 +116,72 @@ let displayDailyActivityVsAll = (user, date) => {
 
 }
 
-// let displayWeeklyActivity = (user, date) => {
-//   const weekDates = activityRepo.returnPriorWeekDates(user, date)
-//   // const weeklyMilesPerDay =
-//   // const weeklyFlightPerDay =
-//   // const weeklyMinutesActive
-//   const data = {
-//     dataSets = [{
-//       label: 'Bar Dataset',
-//             data: [10, 20, 30, 40]
-//     },{
-//       label: 'Bar Dataset',
-//             data: [15, 25, 36, 46]
-//     }]
-//   }
-//   const labels = weekDates
-//   const weeklyActivityTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data, 1)
-//   const weeklyActivityChart = new Chart(activityWeeklyChart, weeklyActivityTemplate);
-// }
+let displayWeeklyActivity = (user, date) => {
+  const weekDates = activityRepo.returnPriorWeekDates(user, date)
+  const weeklyMiles = weekDates.map((time)=> {
+    return activityRepo.getMilesPerDay(user, time)
+  })
+  const weeklyActiveMin = weekDates.map((time)=> {
+    return activityRepo.minutesActiveByDate(user, time)
+  })
+  let weeklyActivityTemplate = {
+    type: 'line',
+    data: {
+        labels: weekDates,
+        datasets: [{
+            label: 'Miles',
+            data: weeklyMiles,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Active Minutes',
+            data: weeklyActiveMin,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
+  const weeklyActivityChart = new Chart(activityWeeklyChart, weeklyActivityTemplate);
+}
 
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
