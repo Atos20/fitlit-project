@@ -10,12 +10,12 @@ class ActivityRepository {
     return Math.round(userDistanceinMiles * 10) / 10 //=> 6 total
   }
 
-  getStepserDay(user, date){
+  getStepserPerDay(user, date){
     const usersActivity = this.data.find(data => data.userID === user.id && data.date === date);
     return usersActivity.numSteps
   }
 
-  getFlightsDay(user, date){
+  getFlightsPerDay(user, date){
     const usersActivity = this.data.find(data => data.userID === user.id && data.date === date);
     return usersActivity.flightsOfStairs
   }
