@@ -150,20 +150,86 @@ let displayDailyAndAverageSleepData = (user, today) => {
 new Chart(sleepAllTimeChart, sleepTemplate)
 }
 
-let displayWeeklySleepHours= (user, today) => {
-  const results= sleepRepo.specificWeeksHours(user.id, today)
-  const data = Object.values(results)
-  const labels = Object.keys(results)
-  const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data)
-  const weeklySleepHChart = new Chart(sleepWeeklyHChart, weeklySleepHTemplate);
-}
+// let displayWeeklySleepHours= (user, today) => {//=1
+//   const results= sleepRepo.specificWeeksHours(user.id, today)
+//   const data = Object.values(results)
+//   const labels = Object.keys(results)
+//   const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data)
+//   const weeklySleepHChart = new Chart(sleepWeeklyHChart, weeklySleepHTemplate);
+// }
 
-let displayWeeklySleepQuality = (user, today) => {
+let displayWeeklySleepQuality = (user, today) => {//= 2
   const results = sleepRepo.specificWeeksQuality(user.id, today);
   const data = Object.values(results)
   const labels = Object.keys(results)
   const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data)
   const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
+}
+
+let weeklySleepQualityAndSleepHours = (user, today) => {
+  const hoursSlept = sleepRepo.specificWeeksHours(user.id, today);//=> data1
+  const sleepQuality = sleepRepo.specificWeeksQuality(user.id, today);//=> data2
+  const data1 = Object.values(hoursSlept);
+  const data2 = Object.values(sleepQuality)
+  const labels = Object.keys(sleepQuality) //=> dates
+
+  let sleepTemplate = {
+    type: 'bar',
+    data: {
+        labels: labels,// => dates
+        datasets: [{
+            label: 'Hours Slept',
+            data: data1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Sleep Quality', 
+            data: data2,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
+new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
@@ -342,8 +408,9 @@ let loadUserData = (user, userRepo) => {
   displayWeeklyWaterConsumption(user, today)
   displayDailyAndAverageSleepData(user, otherToday)
   // displayDailySleepData(user, otherToday)
-  displayWeeklySleepHours(user, otherToday)
-  displayWeeklySleepQuality(user, otherToday)
+  weeklySleepQualityAndSleepHours(user, otherToday)
+  // displayWeeklySleepHours(user, otherToday)
+  // displayWeeklySleepQuality(user, otherToday)
   displayDailySteps(user, otherToday)
   displayDailyMiles(user, otherToday)
   displayWeeklyActivity(user, otherToday)
