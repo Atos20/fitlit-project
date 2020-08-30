@@ -124,12 +124,18 @@ let displayWeeklyActivity = (user, date) => {
   const weeklyActiveMin = weekDates.map((time)=> {
     return activityRepo.minutesActiveByDate(user, time)
   })
+  const weeklyFlights = weekDates.map((time)=> {
+    return activityRepo.getFlightsPerDay(user, time)
+  })
+  console.log(weeklyMiles)
+  console.log(weeklyActiveMin)
+  console.log(weeklyFlights)
   let weeklyActivityTemplate = {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: weekDates,
         datasets: [{
-            label: 'Miles',
+            label: 'Steps',
             data: weeklyMiles,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -151,6 +157,26 @@ let displayWeeklyActivity = (user, date) => {
         },{
             label: 'Active Minutes',
             data: weeklyActiveMin,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Flights',
+            data: weeklyFlights,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
