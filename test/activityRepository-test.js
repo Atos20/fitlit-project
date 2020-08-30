@@ -19,7 +19,7 @@ describe('ActivityRepository', () => {
     anotherDay = '2020/08/21';
     activityTestData = dummyActivityData ;
     userTestData = dummyUserData;
-    user1 = userTestData[0] 
+    user1 = userTestData[0]
     user = new User(user1);
     // user2 = userTestData[3];
     // userTwo = new User(user2);
@@ -77,7 +77,7 @@ it('should be a function', () => {
         flightsOfStairsAverage: 13
       })
   });
-  
+
   it('should return an array of the keys from the average all activities by date', () => {
     activityRepo.averageAllUserActivities(today)
     expect(activityRepo.getKeyAllActivities(today)).to.deep.equal(['numStepsAverage','minutesActiveAverage', 'flightsOfStairsAverage'])
