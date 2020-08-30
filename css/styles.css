@@ -8,7 +8,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2%;
+    padding: 3% 2% 3% 2%;
+}
+
+.user-drop{
+    height: 2em;
+    width: 14em;
+    border: none;
 }
 
 .container-one{
