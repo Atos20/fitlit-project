@@ -10,6 +10,16 @@ class ActivityRepository {
     return Math.round(userDistanceinMiles * 10) / 10 //=> 6 total
   }
 
+  getStepserDay(user, date){
+    const usersActivity = this.data.find(data => data.userID === user.id && data.date === date);
+    return usersActivity.numSteps
+  }
+
+  getFlightsDay(user, date){
+    const usersActivity = this.data.find(data => data.userID === user.id && data.date === date);
+    return usersActivity.flightsOfStairs
+  }
+
   minutesActiveByDate(user, date) {
     const retrievedUser =  this.data.filter(userInfo => userInfo.userID === user.id)
     const desiredDate = retrievedUser.find(info => info.date === date).minutesActive
