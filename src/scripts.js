@@ -113,7 +113,69 @@ let displayDailyMiles = (user, date) => {
 }
 
 let displayDailyActivityVsAll = (user, date) => {
-
+  let dailyStepsUser = activityRepo.getStepsPerDay(user, date)
+  let dailyMinsUser = activityRepo.minutesActiveByDate(user, date)
+  let dailyFlightsUser = activityRepo.getFlightsPerDay(user, date)
+  let aveSteps = activityRepo.averageAllUserActivities(date).numStepsAverage
+  let aveMins = activityRepo.averageAllUserActivities(date).numStepsAverage
+  let aveFlights = activityRepo.averageAllUserActivities(date).numStepsAverage
+  let vsAllActivityTemplate = {
+    type: 'bar',
+    data: {
+        labels: ['Daily Steps', 'Minutes Active', 'Flights'],
+        datasets: [{
+            label: 'User',
+            data: [dailyStepsUser, dailyMinsUser, dailyFlightsUser],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Average All',
+            data: [aveSteps, aveMins, aveFlights],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
+  const dailyActivityvsAllChart = new Chart(activityVsAllChart, vsAllActivityTemplate);
 }
 
 let displayWeeklyActivity = (user, date) => {
@@ -127,15 +189,12 @@ let displayWeeklyActivity = (user, date) => {
   const weeklyFlights = weekDates.map((time)=> {
     return activityRepo.getFlightsPerDay(user, time)
   })
-  console.log(weeklyMiles)
-  console.log(weeklyActiveMin)
-  console.log(weeklyFlights)
   let weeklyActivityTemplate = {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: weekDates,
         datasets: [{
-            label: 'Steps',
+            label: 'Miles',
             data: weeklyMiles,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -225,6 +284,7 @@ let loadUserData = (user, userRepo) => {
   displayDailySteps(user1, otherToday)
   displayDailyMiles(user1, otherToday)
   displayWeeklyActivity(user1, otherToday)
+  displayDailyActivityVsAll(user1, otherToday)
 }
 
 
