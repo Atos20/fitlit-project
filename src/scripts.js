@@ -244,7 +244,6 @@ let displayDailyMiles = (user, date) => {
 
 let displayDailyActivityVsAll = (user, date) => {
   let dailyStepsUser = activityRepo.getStepsPerDay(user, date)
-  console.log(dailyStepsUser)
   let dailyMinsUser = activityRepo.minutesActiveByDate(user, date)
   let dailyFlightsUser = activityRepo.getFlightsPerDay(user, date)
   let aveSteps = activityRepo.averageAllUserActivities(date).numStepsAverage
@@ -311,7 +310,10 @@ let displayDailyActivityVsAll = (user, date) => {
 }
 
 let displayWeeklyActivity = (user, date) => {
-  const weekDates = activityRepo.returnPriorWeekDates(user, date)
+  const weekDates = activityRepo.returnPriorWeekDates(user, date);
+  console.log(weekDates)
+  const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
+  console.log(formatedDates)
   const weeklyMiles = weekDates.map((time)=> {
     return activityRepo.getMilesPerDay(user, time)
   })
@@ -324,7 +326,7 @@ let displayWeeklyActivity = (user, date) => {
   let weeklyActivityTemplate = {
     type: 'line',
     data: {
-        labels: weekDates,
+        labels: formatedDates,
         datasets: [{
             label: 'Miles',
             data: weeklyMiles,
