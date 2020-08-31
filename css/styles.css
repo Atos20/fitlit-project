@@ -340,3 +340,9 @@ section > h2{
     flex-direction: column-reverse;
     }
 }
+
+@media screen and (max-width: 450px) {
+    body{
+        width: 450px;
+    }
+}
