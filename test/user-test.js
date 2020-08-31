@@ -3,12 +3,13 @@ const expect = chai.expect;
 const User = require('../src/user');
 const dummyActivityData = require('../data/dummyActivityData');
 const dummyUserData = require('../data/dummyUserData');
-// const ActivityRepository = require('../src/activityRepository');
 
 describe('User', () => {
 
   let user;
   let user2;
+  let user3;
+  let user4;
   let userData;
   let userData2;
   let activityTestData;
@@ -20,6 +21,9 @@ describe('User', () => {
     userTestData = dummyUserData;
     user = new User(userTestData[0]);
     user2 = new User(userTestData[1]);
+    user3 = new User(userTestData[2]);
+    user4 = new User(userTestData[3])
+
   });
 
   it('should intantiate a user', () => {
@@ -70,6 +74,7 @@ describe('User', () => {
   });
 
   it('should be able to list the information about the user\'s friends', () => {
-    expect(user.retrieveFriendsList()).to.deep.equal([])
+    console.log(user4);
+    expect(user.retrieveFriendsList()).to.deep.equal([user2, user3, user4])
   })
 });
