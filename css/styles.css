@@ -5,15 +5,14 @@
 .challenge, .wel-message, .status-message {
     font-family: 'Comfortaa', cursive;
     color: #F7FFF7;
-    font-size: 1.4em;
-    
+    font-size: 1.4em; 
 }
 
 div > canvas {
     padding: 3%;
 }
 
-.nav-bar, .welcome{
+.nav-bar, .welcome-section{
     background-color: #292F36;
     display: flex;
     flex-direction: row;
@@ -36,13 +35,24 @@ div > canvas {
 
 .user-drop, .user-date{
     height: 2em;
-    width: 14em;
+    width: 12em;
     border: none;
     font-family: 'Comfortaa', cursive;
     padding: 1% 0% 1% 5%;
     background-color: transparent;
     color: #F7FFF7;
     font-size: 1.2em;
+}
+
+.find-date-button{
+    font-size: 1.2em;
+    text-decoration: none;
+    border: none;
+    border-radius: 2em;
+    padding: 0.3em 1.2em;
+    margin: 0em 0.1em 0.1em 0em;
+    background-color: #FF6B6B;
+    color: #F7FFF7;
 }
 
 .challenge{
@@ -53,7 +63,7 @@ div > canvas {
     color: #FFE66D;
 }
 
-.welcome {
+.welcome-section {
     background-color: #586574;
 }
 
@@ -79,12 +89,12 @@ section > h2{
     /* display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(2, 10%);   */
-    background-color: #1A1E23;
+    /* background-color: #1A1E23; */
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-self: center;
-    margin: 0% 0% 0% 0%;
+    /* margin: 0% 0% 0% 0%; */
     grid-area: 1/ 4 /2/ 5;
 }
 
@@ -151,7 +161,7 @@ section > h2{
 }
 
 .hydration-title{
-    color: #F7FFF7;
+    /* color: #F7FFF7; */
 }
 
 .sleep-title{
@@ -225,4 +235,108 @@ section > h2{
 .friends-list{
     background-color: rgb(163, 71, 125);
     grid-area: 3/ 4/ 4/ 7;
+}
+
+@media screen and (max-width: 1300px) {
+    .challenge{
+        font-size: 1.5em;
+        word-spacing: 4px;
+        letter-spacing: 2px;
+    }
+
+    .user-drop, .user-date{
+        height: 2em;
+        width: 10em;
+        padding: 1% 0% 1% 5%;
+        background-color: transparent;
+        font-size: 1em;
+    }
+
+    .daily-steps, .distance-walked, .minutes-active{
+        font-size: 1em;
+        margin: 3%;
+    }
+
+    .wel-message, .status-message {
+        font-size: 1.2em; 
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .challenge{
+        font-size: 1.5em;
+        word-spacing: 2px;
+        letter-spacing: 1px;
+    }
+
+    .user-drop, .user-date{
+        height: 1.5em;
+        width: 10em;
+        padding: 1% 0% 1% 2%;
+        background-color: transparent;
+        font-size: 1em;
+    }
+
+    .daily-steps, .distance-walked, .minutes-active{
+        font-size: 1em;
+    }
+
+    .welcome-section{
+        display: flex;
+        flex-direction: rows;
+        justify-content: center;
+    }
+    .wel-message, .status-message {
+        margin-top: 2%;
+        font-size: 1.2em; 
+        text-align: center;
+    }
+
+    .container-two{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .main{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        /* justify-items: center; */
+    }
+    
+    .activity-section{
+        grid-area: 1/ 1/ 2/ 4;
+    }
+
+    .hydration-section{
+        grid-area: 2/ 4/ 3/ 7;
+        /* margin: 0%; */
+    }
+
+    .sleep-section{
+        grid-area: 2/ 1/ 3/ 4;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-id-card{
+        grid-area: 1/ 4/ 2/ 7;
+    }
+
+    .friends-list{
+        grid-area: 3/ 1/ 5/ 4;
+    }
+
+    .friends-goals{
+        grid-area: 3/ 4/ 6/ 7;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main{
+    display: flex;
+    flex-direction: column-reverse;
+    }
 }
