@@ -74,7 +74,7 @@ describe('User', () => {
   });
 
   it('should be able to list the information about the user\'s friends', () => {
-    console.log(user4);
-    expect(user.retrieveFriendsList()).to.deep.equal([user2, user3, user4])
+  
+    expect(user.retrieveFriendsList(user)).to.deep.equal([user2, user3, user4])
   })
 });
