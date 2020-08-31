@@ -244,6 +244,7 @@ let displayDailyMiles = (user, date) => {
 
 let displayDailyActivityVsAll = (user, date) => {
   let dailyStepsUser = activityRepo.getStepsPerDay(user, date)
+  console.log(dailyStepsUser)
   let dailyMinsUser = activityRepo.minutesActiveByDate(user, date)
   let dailyFlightsUser = activityRepo.getFlightsPerDay(user, date)
   let aveSteps = activityRepo.averageAllUserActivities(date).numStepsAverage
@@ -353,7 +354,6 @@ let displayWeeklyActivity = (user, date) => {
             label: 'Flights',
             data: weeklyFlights,
             backgroundColor: [
-,
                 'rgba(153, 102, 255, 0.2)',
             ],
             borderColor: [
