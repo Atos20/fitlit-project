@@ -131,10 +131,10 @@ section > h2{
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: 15% 10% 40%;
-    /* padding: 2%; */
     grid-area: 1/ 1/ 3/ 4;
     padding: 5% 2% 0% 2%;
     background-color: #F7FFF7;
+    height: auto;
 }
 
 .friends-section{
@@ -151,12 +151,13 @@ section > h2{
 .cards-wrap-goals, .cards-wrap-friends{
   padding: 1vh;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
 }
 
 .cards-wrap-friends{
-  overflow-x: scroll;
+  overflow: scroll;
 }
 
 
@@ -164,7 +165,9 @@ section > h2{
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 15vw;
+  align-content: center;
+  width: auto;
+  margin: 5vh;
 }
 
 .daily-steps, .distance-walked, .minutes-active{
