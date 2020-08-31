@@ -8,16 +8,18 @@
     font-size: 1.4em;
     
 }
+
 div > canvas {
     padding: 3%;
 }
+
 .nav-bar, .welcome{
     background-color: #292F36;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 3% 2% 3% 2%;
+    padding: 3% 2% 4% 2%;
 }
 
 .user-drop, .user-date{
@@ -54,30 +56,21 @@ section > h2{
 .main{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 50% 50%;
-    /* grid-gap: 30px; */
+    grid-template-rows: repeat(3, .3fr);
     /* justify-items: center; */
 }
 
 .hydration-section{
     /* display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 10%);
-    background-color: ;
-     */
+    grid-template-rows: repeat(2, 10%);   */
     background-color: #1A1E23;
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-self: center;
-    margin: 10% 0% 0% 0%;
-
-}
-
-.hydration-section{
-    /* grid-area: 1/ 4/ 2 / 5; */
-    /* text-align: center; */
-    /* margin: 10% 5% 6% 1%; */
+    margin: 0% 0% 0% 0%;
+    grid-area: 1/ 4 /2/ 5;
 }
 
 .hydration-title, .sleep-title{
@@ -90,7 +83,7 @@ section > h2{
     /* this is for grid */
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 5% 50%;
+    grid-template-rows: 15% 50%;
     /* text-align: center; */ 
     background-color: #95A2B1;
     /* align-self: self-end; */
@@ -106,6 +99,7 @@ section > h2{
     /* position: relative; */
     /* margin: 10% 0% 15% 0%; */
     /* display: block; */
+    margin: 5% 0% 15% 0
 }
 
 .allTimeSleepHoursAndQuality-chart{
@@ -129,10 +123,10 @@ section > h2{
     margin: 5%;
 }
 
-.activity-title, .hydration-title, .sleep-title{
+.activity-title, .hydration-title, .sleep-title, .user-title{
+    margin: 5% 0% 5% 0%;
     font-family: 'Monoton', cursive;
-    font-size: 1.5em;
-    /* margin-bottom: 11%; */
+    font-size: 1.7em;
     text-align: center;
 }
 
@@ -142,7 +136,11 @@ section > h2{
 }
 
 .hydration-title{
-    margin: 10% 0% 10% 0%;
+    color: #F7FFF7;
+}
+
+.sleep-title{
+    margin-top: 5%;
 }
 
 .daily-steps{
@@ -165,9 +163,9 @@ section > h2{
 
 .weekly-activity-chart{
     grid-area: 4/ 1/ 4/ 5;
-    position: relative;
+    /* position: relative; */
     margin: 10% 0% 0% 0%;
-    display: block;
+    /* display: block; */
     /* height: 20em;
     width: 30em; */
 }
@@ -182,11 +180,12 @@ section > h2{
 }
 
 .user-id-card{
-    background-color: #238078;
+    background-color: #2CA096;
     /* padding: 1%; */
     text-align: center;
-    font-family: 'Balsamiq Sans', cursive;
+    font-family: 'Fredoka One', cursive;
     /* margin-top: 5%; */
+    font-size: 1.2em;
     grid-area: 1/ 5/ 2/ 7;
 }
 
@@ -196,7 +195,7 @@ section > h2{
 
 .user-image{
     border-radius: 75px;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 .user-id-card > h2{
@@ -204,11 +203,11 @@ section > h2{
 }
 
 .friends-goals{
-    background-color: rgb(161, 163, 71);
-    grid-area: 3/ 1/ 4/ 6;
+    background-color: #FFE66D;
+    grid-area: 3/ 1/ 4/ 4;
 }
 
 .friends-list{
     background-color: rgb(163, 71, 125);
-    grid-area: 3/ 5/ 4/ 7;
+    grid-area: 3/ 4/ 4/ 7;
 }
