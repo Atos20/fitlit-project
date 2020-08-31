@@ -13,6 +13,11 @@ class User {
     const firstName = this.name.split(' ');
     return firstName[0];
   }
+  
+  retrieveFriendsList(user){
+    
+  }
+
 }
 
 if (typeof module !== 'undefined') {
