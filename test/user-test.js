@@ -91,6 +91,12 @@ describe('User', () => {
   })
 
   it('should be able to to return the information from the person who have walked the most', () => {
-    expect(user. getBestWalkersData(user, userTestData, activityTestData, today)).to.deep.equal(user4)
+    expect(user. getBestWalkersData(user, userTestData, activityTestData, today)).to.deep.equal(
+      [
+        { id: 4, averageStep: 63014 },
+        { id: 3, averageStep: 61369 },
+        { id: 2, averageStep: 40886 }
+      ]
+    )
   })
 });
