@@ -69,8 +69,6 @@ let displayWeeklyWaterConsumption = (user, today) => {
   const data = hydrationRepo.returnWeeksHydration(user.id, today);
   const weekDates = hydrationRepo.retriveHydrationDates(user.id, today) ;
   const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
-  console.log(formatedDates)
-
   const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
   const weeklyHydrationTemplate = new ChartTemplate('bar', formatedDates, 'Weekly Water Consumption', values)
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
