@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Fredoka+One&family=Monoton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
@@ -11,77 +12,84 @@
   <body>
     <nav class="nav-bar">
     <div class="container-one">
-        <a href=""><i class="burger-menu fas fa-bars"></i></a>
-        <select name="user-drop" id="">
+        <div class="burger-menu-container">
+          <i class="fas fa-bars"></i>
+        </div>
+        <select class="user-drop" id="">
           <option value="" class="name">User's Name</option>
         </select>
       </div>
-      <h1 class="challenge"> Today Challenge: 100000 steps!</h1>
-      <div class="container-two">
-        <input type="date" name="users-date" id="">
-        <button class="find-date">A</button>
+    <h1 class="challenge"> Today's Challenge 🏆 837400 steps!</h1>
+    <div class="container-two">
+        <input type="date" class="user-date">
+        <button class="find-date-button">submit</button>
     </div>
     </nav>
-    <section class="welcome">
-      <h2 class="wel-message">Welcome 'User'! Let's have another great day</h2>
-      <h2 class="status-message">You are in 2nd place, out of all your friends today!</h2>
+    <section class="welcome-section">
+      <h1 class="wel-message">Welcome 'User'! Let's have another great day</h1>
+      <h1 class="status-message">You are in 2nd place, out of all your friends today!</h1>
     </section>
     <main class="main">
-      <section class="activity">1
-        <h3>Activity Data</h3>
+      <section class="activity-section">
+        <h3 class="activity-title">Activity Data</h3>
         <div class="daily-steps">
-          <h5>Daily Steps</h5>
-          <h5 id="daily-steps"></h5>
+          <h3>Daily Steps</h3>
+          <h3 id="daily-steps"></h3>
         </div>
         <div class="minutes-active">
-          <h5>Minutes Active</h5>
-          <h5 id="minutes-active"></h5>
+          <h3>Minutes Active</h3>
+          <h3 id="minutes-active"></h3>
         </div>
         <div class="distance-walked">
-          <h5>Distance Walked</h5>
-          <h5 id="distance-walked"></h5>
+          <h3>Distance Walked</h3>
+          <h3 id="distance-walked"></h3>
         </div>
-        <div class="activity-data-vs-all-daily">
-          <canvas id="activity-data-vs-all-daily" width="200" height="200"></canvas>
+        <div class="activity-data-vs-all-daily-chart" width="200" height="100">
+          <canvas id="activity-data-vs-all-daily" width="300" height="200"></canvas>
         </div>
-        <div class="weekly-activity">
-          <canvas id="weekly-activty" width="200" height="200"></canvas>
+        <div class="weekly-activity-chart">
+          <canvas id="weekly-activty"></canvas>
         </div>
       </section>
-      <section class="hydration">
-        <h3>Hydration Data</h3>
-        <div class="dailyHydrationData">
-          <canvas id="daily-hydration-chart" width="200" height="200"></canvas>
+      <section class="hydration-section">
+        <h3 class="hydration-title">Hydration Data</h3>
+        <div class="dailyHydrationData-chart">
+          <canvas id="daily-hydration-chart" width="350" height="250"></canvas>
         </div>
         <div class="weeklyHydrationData">
           <canvas id="weekly-hydration-chart" width="300" height="300"></canvas>
         </div>
       </section>
-      <section class="sleep">
-        <h3>Sleep Data</h3>
-        <div class="dailySleepHoursAndQuality" >
+      <section class="sleep-section">
+        <h3 class="sleep-title">Sleep Data</h3>
+        <!-- <div class="dailySleepHoursAndQuality" >
           <canvas id="daily-sleep-hours-and-quality" width="300" height="300"></canvas>
+        </div> -->
+        <div class="pastWeekSleepHours-chart" >
+          <canvas id="pastWeek-sleep-hours" width="400" height="300"></canvas>
         </div>
-        <div class="pastWeekSleepHours" >
-          <canvas id="pastWeek-sleep-hours" width="300" height="300"></canvas>
-        </div>
-        <div class="pastWeekSleepQuality" >
+        <!-- <div class="pastWeekSleepQuality" >
           <canvas id="pastWeek-sleep-quality" width="300" height="300"></canvas>
-        </div>
-        <div class="allTimeSleepHoursAndQuality" >
-          <canvas id="allTime-sleep-hours-and-quality" width="300" height="300"></canvas>
+        </div> -->
+        <div class="allTimeSleepHoursAndQuality-chart" >
+          <canvas id="allTime-sleep-hours-and-quality" width="300" height="200"></canvas>
         </div>
       </section>
       <section class="user-id-card">
-        <img class="user-image" src="http://i.pravatar.cc/125" alt="">
+        <h3 class="user-title">Personal info</h3>
+        <img class="user-image" src="http://i.pravatar.cc/150" alt="">
         <h2 class="card-name">Mar Gonzales</h2>
-        <h3 class="address">123 Main St Denver CO</h3>
-        <h3 class="email">marGonzales@gmail.com</h3>
-        <h3 class="daily-step-goal">1234567</h3>
-        <h3 class="average-step-goal">1234567</h3>
+        <h2 class="address">123 Main St Denver CO</h2>
+        <h2 class="email">marGonzales@gmail.com</h2>
+        <h2 class="daily-step-goal">1234567</h2>
+        <h2 class="average-step-goal">1234567</h2>
       </section>
-      <section class="friends-goals">5</section>
-      <section class="friends-list">6</section>
+      <section class="friends-list">
+        <h2 class="list">friends list</h2>
+      </section>
+      <section class="friends-goals">
+        <h2 class="goals">friends goals</h2>
+      </section>
     </main>
     <script src="https://kit.fontawesome.com/6aa953ce7f.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../node_modules/chart.js/dist/Chart.js"></script>
