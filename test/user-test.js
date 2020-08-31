@@ -5,7 +5,7 @@ const dummyActivityData = require('../data/dummyActivityData');
 const dummyUserData = require('../data/dummyUserData');
 
 describe('User', () => {
-
+  let today;
   let user;
   let user2;
   let user3;
@@ -16,7 +16,7 @@ describe('User', () => {
   let userTestData;
 
   beforeEach(() => {
-
+    today = '2020/08/22';
     activityTestData = dummyActivityData;
     userTestData = dummyUserData;
     user = new User(userTestData[0]);
@@ -74,7 +74,23 @@ describe('User', () => {
   });
 
   it('should be able to list the information about the user\'s friends', () => {
-  
-    expect(user.retrieveFriendsList(user)).to.deep.equal([user2, user3, user4])
+    const getMyFriends = user.retrieveFriendsList(user, userTestData)
+    expect(getMyFriends ).to.deep.equal([user2, user3, user4])
+  })
+  it('should be able to get the users average step count for a given week', () => {
+    expect(user.getUserStepCount(user, activityTestData, today)).to.equal(71378)
+  })
+
+  it('should be able to get the users friends average step count for a given week with it\'s id\'s', () => {
+    expect(user. getFriendsStepCount(user, userTestData, activityTestData, today)).to.deep.equal(
+      [
+        { id: 2, averageStep: 40886 },
+        { id: 3, averageStep: 61369 },
+        { id: 4, averageStep: 63014 }
+      ]);
+  })
+
+  it('should be able to to return the information from the person who have walked the most', () => {
+    expect(user. getBestWalkersData(user, userTestData, activityTestData, today)).to.deep.equal(user4)
   })
 });
