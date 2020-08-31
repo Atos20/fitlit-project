@@ -67,10 +67,14 @@ let displayDailyWaterConsumption = (user, today) => {
 
 let displayWeeklyWaterConsumption = (user, today) => {
   const data = hydrationRepo.returnWeeksHydration(user.id, today);
-  const labels = hydrationRepo.retriveHydrationDates(user.id, today) ;
+  const weekDates = hydrationRepo.retriveHydrationDates(user.id, today) ;
+  const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
+  console.log(formatedDates)
+
   const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
-  const weeklyHydrationTemplate = new ChartTemplate('bar', labels, 'Weekly Water Consumption', values)
+  const weeklyHydrationTemplate = new ChartTemplate('bar', formatedDates, 'Weekly Water Consumption', values)
   const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
+
 }
 
 // let displayAllTimeSleepData = (user) => {
@@ -171,13 +175,13 @@ let weeklySleepQualityAndSleepHours = (user, today) => {
   const hoursSlept = sleepRepo.specificWeeksHours(user.id, today);//=> data1
   const sleepQuality = sleepRepo.specificWeeksQuality(user.id, today);//=> data2
   const data1 = Object.values(hoursSlept);
-  const data2 = Object.values(sleepQuality)
-  const labels = Object.keys(sleepQuality) //=> dates
-
+  const data2 = Object.values(sleepQuality);
+  const labels = Object.keys(sleepQuality); //=> dates
+  const formatedDates = labels.map(newDate => moment(newDate).format('MM-DD'));
   let sleepTemplate = {
     type: 'bar',
     data: {
-        labels: labels,// => dates
+        labels: formatedDates,// => dates
         datasets: [{
             label: 'Hours Slept',
             data: data1,
@@ -311,9 +315,7 @@ let displayDailyActivityVsAll = (user, date) => {
 
 let displayWeeklyActivity = (user, date) => {
   const weekDates = activityRepo.returnPriorWeekDates(user, date);
-  console.log(weekDates)
   const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
-  console.log(formatedDates)
   const weeklyMiles = weekDates.map((time)=> {
     return activityRepo.getMilesPerDay(user, time)
   })
