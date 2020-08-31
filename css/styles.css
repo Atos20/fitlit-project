@@ -22,18 +22,33 @@ div > canvas {
     padding: 3% 2% 4% 2%;
 }
 
+.container-one{
+    display: flex;
+    /* color: gold; */
+    flex-direction: rows;
+    /* background-color: teal; */
+}
+
+.fa-bars{
+    font-size: 2.5em;
+    color: gold;
+}
+
 .user-drop, .user-date{
     height: 2em;
     width: 14em;
     border: none;
     font-family: 'Comfortaa', cursive;
     padding: 1% 0% 1% 5%;
+    background-color: transparent;
+    color: #F7FFF7;
+    font-size: 1.2em;
 }
 
 .challenge{
     font-family: 'Fredoka One', cursive;
     font-size: 2em;
-    word-spacing: 8px;
+    word-spacing: 6px;
     letter-spacing: 2px;
     color: #FFE66D;
 }
