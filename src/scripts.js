@@ -8,9 +8,7 @@ const averageStepGoal = document.querySelector(".average-step-goal")
 const welMessage = document.querySelector(".wel-message");
 const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
 const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
-// const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
 const sleepWeeklyHChart = document.querySelector("#pastWeek-sleep-hours").getContext('2d');
-// const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
 const sleepAllTimeChart = document.querySelector("#allTime-sleep-hours-and-quality").getContext('2d');
 const dailySteps = document.querySelector("#daily-steps")
 const minutesActive = document.querySelector("#minutes-active")
@@ -18,6 +16,13 @@ const distanceWalked = document.querySelector("#distance-walked")
 const activityVsAllChart = document.querySelector("#activity-data-vs-all-daily").getContext('2d');
 const activityWeeklyChart = document.querySelector("#weekly-activty").getContext('2d');
 const statusMessage = document.querySelector(".status-message")
+const firstPlaceCard = document.querySelector(".first-place")
+const secondPlaceCard = document.querySelector(".second-place")
+const thirdPlaceCard = document.querySelector(".third-place")
+const friendsList = document.querySelector(".cards-wrap-friends")
+
+
+
 
 let trialData1 = {
   "id": 2,
@@ -57,6 +62,7 @@ let loadCardInfo = (user, userRepo) => {
 }
 
 let displayDailyWaterConsumption = (user, today) => {
+  console.log(user)
   const result = hydrationRepo.returnDaysHydration(user.id, today);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
@@ -75,19 +81,22 @@ let displayWeeklyWaterConsumption = (user, today) => {
 
 }
 
-// let displayAllTimeSleepData = (user) => {
-//   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-//   const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-//   const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data)
-//   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
-// }
 
-// let displayDailySleepData = (user, today) => {
-//   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
-//   const labels = ['LastNightHours', 'LastNightQuality'];
-//   const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
-//   const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
-// }
+
+let displayFriends = (user, data) => {
+  friendsList.innerHTML = ''
+  let friends = user.retrieveFriendsList(data)
+  friends.forEach((friend) => {
+    friendsList.insertAdjacentHTML('beforeEnd',
+    `<div class="friends-card">
+      <h3>${friend.name}</h3>
+      <!-- <img class="user-image" src="http://i.pravatar.cc/150?img=11" alt=""> -->
+      <h3>Friend's Step Goal</h3>
+      <h3>${friend.dailyStepGoal}</h3>
+    </div>`
+  )
+  })
+}
 
 let displayDailyAndAverageSleepData = (user, today) => {
   const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
@@ -384,21 +393,19 @@ let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
 }
 
-let loadUserData = (user, userRepo) => {
+let loadUserData = (user, userRepo, data) => {
   loadCardInfo(user, userRepo);
   updateWelcomeMessage(user);
   displayDailyWaterConsumption(user, today)
   displayWeeklyWaterConsumption(user, today)
   displayDailyAndAverageSleepData(user, otherToday)
-  // displayDailySleepData(user, otherToday)
   weeklySleepQualityAndSleepHours(user, otherToday)
-  // displayWeeklySleepHours(user, otherToday)
-  // displayWeeklySleepQuality(user, otherToday)
   displayDailySteps(user, otherToday)
   displayDailyMilesAndMinutes(user, otherToday)
   displayWeeklyActivity(user, otherToday)
   displayDailyActivityVsAll(user, otherToday)
+  displayFriends(user, data);
 }
 
 
-window.onload = loadUserData(user1, userRepo)
+window.onload = loadUserData(user1, userRepo, dummyUserData)
