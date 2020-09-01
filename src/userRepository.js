@@ -1,9 +1,21 @@
+const User = require('../src/user');
+
 class UserRepository {
   constructor(data) {
     this.usersData = data
+    this.userInstances = []
+    };
+  createUsers() {
+    let newInstances = this.usersData.map((item)=>{
+      let user = new User(item)
+      return user
+    })
+    this.userInstances = newInstances
   }
 
   retrieveUserInfo(id) {
+    this.createUsers()
+    console.log(this.userInstances)
     let userInfo = this.usersData.filter(user =>
       user.id === id)
     return userInfo

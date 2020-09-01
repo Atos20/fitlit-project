@@ -1,7 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const UserRepository = require('../data/userRepository')
+const User = require('../src/user');
+const UserRepository = require('../src/userRepository')
 
 describe('UserRepository', () => {
   let userRepository
@@ -15,7 +16,7 @@ describe('UserRepository', () => {
         "strideLength": 4.5,
         "dailyStepGoal": 10000,
         "friends": [2, 3, 4]
-      }, 
+      },
       { "id": 2,
         "name": "Nathaniel",
         "address": "123 5th Street, Denver CO 12345",
@@ -23,7 +24,7 @@ describe('UserRepository', () => {
         "strideLength": 4,
         "dailyStepGoal": 15000,
         "friends": [1, 3, 4]
-      } 
+      }
     ]
     userRepository = new UserRepository(data)
   })
