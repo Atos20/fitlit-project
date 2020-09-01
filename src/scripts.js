@@ -20,6 +20,7 @@ const firstPlaceCard = document.querySelector(".first-place")
 const secondPlaceCard = document.querySelector(".second-place")
 const thirdPlaceCard = document.querySelector(".third-place")
 const friendsList = document.querySelector(".cards-wrap-friends")
+const userImage = document.querySelector(".user-image")
 
 
 
@@ -54,15 +55,17 @@ let sleepRepo = new SleepRepository(sleepTestData);
 let activityRepo = new ActivityRepository(activityTestData);
 
 let loadCardInfo = (user, userRepo) => {
+  let number = Math.floor(Math.random()*10)
+  console.log(number)
   cardName.innerText = user.name;
   address.innerText = user.address;
+  userImage.src = `../stock_photos/${number}.jpeg`
   email.innerText = user.email;
   dailyStepGoal.innerText = `Your Step Goal: ${user.dailyStepGoal}`
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
 }
 
 let displayDailyWaterConsumption = (user, today) => {
-  console.log(user)
   const result = hydrationRepo.returnDaysHydration(user.id, today);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
