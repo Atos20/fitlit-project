@@ -28,5 +28,11 @@ describe('User', () => {
   it('should be able to have different labels', () => {
     expect(chartTemplate2.data.labels).to.deep.equal(['three', 'four']);
   });
+  it('should be able to have labels',() => {
+    expect(chartTemplate1.data.datasets[0].label).to.equal('this is a bar chart');
+  });
+  it('should be able to have different labels', () => {
+    expect(chartTemplate2.data.datasets[0].label).to.equal('this is a line chart');
+  });
 
 })
