@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <title>Activity Tracker</title>
   </head>
+
   <body>
     <nav class="nav-bar">
     <div class="container-one">
@@ -62,33 +63,37 @@
       </section>
       <section class="sleep-section">
         <h3 class="sleep-title">Sleep Data</h3>
-        <!-- <div class="dailySleepHoursAndQuality" >
-          <canvas id="daily-sleep-hours-and-quality" width="300" height="300"></canvas>
-        </div> -->
         <div class="pastWeekSleepHours-chart" >
           <canvas id="pastWeek-sleep-hours" width="400" height="300"></canvas>
         </div>
-        <!-- <div class="pastWeekSleepQuality" >
-          <canvas id="pastWeek-sleep-quality" width="300" height="300"></canvas>
-        </div> -->
         <div class="allTimeSleepHoursAndQuality-chart" >
           <canvas id="allTime-sleep-hours-and-quality" width="300" height="200"></canvas>
         </div>
       </section>
       <section class="user-id-card">
         <h3 class="user-title">Personal info</h3>
-        <img class="user-image" src="http://i.pravatar.cc/150" alt="">
+        <img class="user-image" src="" alt="">
         <h2 class="card-name">Mar Gonzales</h2>
         <h2 class="address">123 Main St Denver CO</h2>
         <h2 class="email">marGonzales@gmail.com</h2>
         <h2 class="daily-step-goal">1234567</h2>
         <h2 class="average-step-goal">1234567</h2>
       </section>
-      <section class="friends-list">
-        <h2 class="list">friends list</h2>
+      <section class="friends-list friends-section">
+        <h2 class="list">Friends List</h2>
+        <div class="cards-wrap-friends">
+        </div>
       </section>
-      <section class="friends-goals">
-        <h2 class="goals">friends goals</h2>
+      <section class="friends-goals friends-section">
+        <h2 class="goals">Friends' Goals</h2>
+        <div class="cards-wrap-goals">
+          <div class="first-place rank-card">
+          </div>
+          <div class="second-place rank-card">
+          </div>
+          <div class="third-place rank-card">
+          </div>
+        </div>
       </section>
     </main>
     <script src="https://kit.fontawesome.com/6aa953ce7f.js" crossorigin="anonymous"></script>

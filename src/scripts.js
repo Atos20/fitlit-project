@@ -8,15 +8,21 @@ const averageStepGoal = document.querySelector(".average-step-goal")
 const welMessage = document.querySelector(".wel-message");
 const waterDailyChart = document.querySelector("#daily-hydration-chart").getContext('2d');
 const waterWeeklyChart = document.querySelector("#weekly-hydration-chart").getContext('2d');
-// const sleepDailyChart = document.querySelector("#daily-sleep-hours-and-quality").getContext('2d');
 const sleepWeeklyHChart = document.querySelector("#pastWeek-sleep-hours").getContext('2d');
-// const sleepWeeklyQChart = document.querySelector("#pastWeek-sleep-quality").getContext('2d');
 const sleepAllTimeChart = document.querySelector("#allTime-sleep-hours-and-quality").getContext('2d');
 const dailySteps = document.querySelector("#daily-steps")
 const minutesActive = document.querySelector("#minutes-active")
 const distanceWalked = document.querySelector("#distance-walked")
 const activityVsAllChart = document.querySelector("#activity-data-vs-all-daily").getContext('2d');
 const activityWeeklyChart = document.querySelector("#weekly-activty").getContext('2d');
+const statusMessage = document.querySelector(".status-message")
+const firstPlaceCard = document.querySelector(".first-place")
+const secondPlaceCard = document.querySelector(".second-place")
+const thirdPlaceCard = document.querySelector(".third-place")
+const friendsList = document.querySelector(".cards-wrap-friends")
+const userImage = document.querySelector(".user-image")
+
+
 
 
 let trialData1 = {
@@ -48,9 +54,13 @@ let hydrationRepo = new HydrationRepository(dummyHydrationData);
 let sleepRepo = new SleepRepository(sleepTestData);
 let activityRepo = new ActivityRepository(activityTestData);
 
+let number = () => {
+  return Math.floor(Math.random()*10)
+}
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
   address.innerText = user.address;
+  userImage.src = `../stock_photos/${number()}.jpeg`
   email.innerText = user.email;
   dailyStepGoal.innerText = `Your Step Goal: ${user.dailyStepGoal}`
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
@@ -75,19 +85,47 @@ let displayWeeklyWaterConsumption = (user, today) => {
 
 }
 
-// let displayAllTimeSleepData = (user) => {
-//   const data = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-//   const labels = ['AveHoursAllTime', 'AveQualityAllTime'];
-//   const allTimeSleepTemplate = new ChartTemplate('bar', labels, "All Time Sleep Data", data)
-//   const alltimeSleepChart = new Chart(sleepAllTimeChart, allTimeSleepTemplate);
-// }
 
-// let displayDailySleepData = (user, today) => {
-//   const data = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
-//   const labels = ['LastNightHours', 'LastNightQuality'];
-//   const dailySleepTemplate = new ChartTemplate('bar', labels, "Last Night's Sleep Data", data)
-//   const dailySleepChart = new Chart(sleepDailyChart, dailySleepTemplate);
-// }
+
+let displayFriends = (user, data) => {
+  friendsList.innerHTML = ''
+  let friends = user.retrieveFriendsList(data)
+  friends.forEach((friend) => {
+    friendsList.insertAdjacentHTML('beforeEnd',
+    `<div class="friends-card">
+      <h3 class="card-title">${friend.name}</h3>
+      <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
+      <h3 class="card-title">Friend's Step Goal</h3>
+      <h3>${friend.dailyStepGoal}</h3>
+    </div>`
+  )
+  })
+}
+
+let displayTopThree = (user, usersData, activityData, date) => {
+  let winner = user.getBestWalkersData(usersData, activityData, date)
+  firstPlaceCard.innerHTML = `<div class="first-place rank-card">
+    <h3 class="card-title"> First Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
+    <h4> ${winner[0].name} </h4>
+    <h4 class="card-title"> Ave. Daily Steps</h4>
+    <h4> ${winner[0].averageStep} </h4>
+  </div>`
+  secondPlaceCard.innerHTML = `<div class="second-place rank-card">
+    <h3 class="card-title"> Second Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
+    <h4> ${winner[1].name} </h4>
+    <h4 class="card-title"> Ave. Daily Steps </h4>
+    <h4> ${winner[1].averageStep} </h4>
+  </div>`
+  thirdPlaceCard.innerHTML = `<div class="third-place rank-card">
+    <h3 class="card-title"> Third Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
+    <h4> ${winner[2].name} </h4>
+    <h4 class="card-title"> Ave. Daily Steps </h4>
+    <h4> ${winner[2].averageStep} </h4>
+  </div>`
+}
 
 let displayDailyAndAverageSleepData = (user, today) => {
   const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
@@ -117,7 +155,7 @@ let displayDailyAndAverageSleepData = (user, today) => {
             ],
             borderWidth: 1
         },{
-            label: 'Average', 
+            label: 'Average',
             data: aveData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -201,7 +239,7 @@ let weeklySleepQualityAndSleepHours = (user, today) => {
             ],
             borderWidth: 1,
         },{
-            label: 'Sleep Quality', 
+            label: 'Sleep Quality',
             data: data2,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -236,12 +274,13 @@ new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
-  dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
-  // console.log(activityRepo.returnPriorWeekDates(user, date))
+  dailySteps.innerText = activityRepo.getStepsPerDay(user, date)
+  statusMessage.innerText = activityRepo.stepGoalSuccess(user, date)
 }
 
-let displayDailyMiles = (user, date) => {
+let displayDailyMilesAndMinutes = (user, date) => {
   distanceWalked.innerText = `${activityRepo.getMilesPerDay(user, date)} miles`
+  minutesActive.innerText = `${activityRepo.minutesActiveByDate(user, date)} mins`
 }
 
 let displayDailyActivityVsAll = (user, date) => {
@@ -298,7 +337,7 @@ let displayDailyActivityVsAll = (user, date) => {
         }]
     },
     options: {
-      
+
         scales: {
             yAxes: [{
                 ticks: {
@@ -383,21 +422,20 @@ let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
 }
 
-let loadUserData = (user, userRepo) => {
+let loadUserData = (user, userRepo, data) => {
   loadCardInfo(user, userRepo);
   updateWelcomeMessage(user);
   displayDailyWaterConsumption(user, today)
   displayWeeklyWaterConsumption(user, today)
   displayDailyAndAverageSleepData(user, otherToday)
-  // displayDailySleepData(user, otherToday)
   weeklySleepQualityAndSleepHours(user, otherToday)
-  // displayWeeklySleepHours(user, otherToday)
-  // displayWeeklySleepQuality(user, otherToday)
   displayDailySteps(user, otherToday)
-  displayDailyMiles(user, otherToday)
+  displayDailyMilesAndMinutes(user, otherToday)
   displayWeeklyActivity(user, otherToday)
   displayDailyActivityVsAll(user, otherToday)
+  displayFriends(user, data);
+  displayTopThree(user, data, activityRepo.data, otherToday)
 }
 
 
-window.onload = loadUserData(user1, userRepo)
+window.onload = loadUserData(user1, userRepo, dummyUserData)

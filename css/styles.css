@@ -5,11 +5,15 @@
 .challenge, .wel-message, .status-message {
     font-family: 'Comfortaa', cursive;
     color: #F7FFF7;
-    font-size: 1.4em; 
+    font-size: 1.4em;
 }
 
 div > canvas {
     padding: 3%;
+}
+
+img{
+  max-width: 10vw
 }
 
 .nav-bar, .welcome-section{
@@ -23,9 +27,7 @@ div > canvas {
 
 .container-one{
     display: flex;
-    /* color: gold; */
     flex-direction: rows;
-    /* background-color: teal; */
 }
 
 .fa-bars{
@@ -68,14 +70,9 @@ div > canvas {
     background-color: #586574;
 }
 
-main > section{
-    /* margin: 3% */
-}
-
 section > h2{
     font-family: 'Comfortaa', cursive;
     font-size: 1em;
-    /* margin-top: 3%;  */
     font-weight: bold;
 }
 
@@ -83,7 +80,7 @@ section > h2{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, .3fr);
-    /* justify-items: center; */
+    font-family: 'Comfortaa', cursive;
 }
 
 .hydration-section{
@@ -110,10 +107,10 @@ section > h2{
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: 15% 50%;
-    /* text-align: center; */ 
+    /* text-align: center; */
     background-color: #95A2B1;
     /* align-self: self-end; */
-    grid-area: 2/ 4/ 3 / 7; 
+    grid-area: 2/ 4/ 3 / 7;
     /* display: flex; */
     /* flex-direction: column; */
     align-self: center;
@@ -136,17 +133,55 @@ section > h2{
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: 15% 10% 40%;
-    /* padding: 2%; */
     grid-area: 1/ 1/ 3/ 4;
     padding: 5% 2% 0% 2%;
     background-color: #F7FFF7;
+    height: auto;
 }
 
-.daily-steps, .distance-walked, .minutes-active{
+.friends-section{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: auto;
+}
+
+.friends-list, .friends-goals{
+  padding: 1vh
+}
+
+.cards-wrap-goals, .cards-wrap-friends{
+  padding: 1vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  overflow: scroll;
+}
+
+
+.friends-card, .rank-card{
+  font-size: .8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  min-width: 15vw;
+}
+
+.goals, .list, .card-title, .daily-steps, .distance-walked, .minutes-active{
     font-family: 'Fredoka One', cursive;
     font-size: 1.5em;
     text-align: center;
     margin: 5%;
+}
+
+#daily-steps, #minutes-active, #distance-walked{
+  font-family: 'Comfortaa', cursive;
+  padding-top: .5vh;
+}
+.card-title{
+  font-size: 1rem;
 }
 
 .activity-title, .hydration-title, .sleep-title, .user-title{
@@ -184,7 +219,7 @@ section > h2{
 .activity-data-vs-all-daily-chart{
     grid-area: 3/ 1 / 4/ 5;
     margin: 0% 0% 0% 0%;
-    
+
 }
 
 .weekly-activity-chart{
@@ -259,7 +294,11 @@ section > h2{
     }
 
     .wel-message, .status-message {
-        font-size: 1.2em; 
+        font-size: 1.2em;
+    }
+
+    .rank-card {
+      padding-left: 2vw;
     }
 }
 
@@ -289,7 +328,7 @@ section > h2{
     }
     .wel-message, .status-message {
         margin-top: 2%;
-        font-size: 1.2em; 
+        font-size: 1.2em;
         text-align: center;
     }
 
@@ -306,7 +345,7 @@ section > h2{
         grid-template-rows: .5fr 1fr 1fr;
         /* justify-items: center; */
     }
-    
+
     .activity-section{
         grid-area: 1/ 1/ 2/ 4;
     }
