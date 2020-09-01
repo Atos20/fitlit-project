@@ -1,15 +1,18 @@
 const chai = require('chai');
 const expect = chai.expect;
-const chartTemplate = require('..src/chartTemplate.js')
+const ChartTemplate = require('../src/chartTemplate')
 
 describe('User', () => {
 
   let chart;
 
   beforeEach(() => {
-    chart = new Chart(type, label, title, data)
+    chart = new ChartTemplate()
   })
   it('it should be a function', () => {
-      console.log(chart)
+    expect(ChartTemplate).to.be.a('function');
+  });
+  it('should be an instance of the charTemplate class', () => {
+    expect(chart).to.be.an.instanceOf(ChartTemplate);
   })
 })
