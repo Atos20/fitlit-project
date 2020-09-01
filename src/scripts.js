@@ -54,12 +54,13 @@ let hydrationRepo = new HydrationRepository(dummyHydrationData);
 let sleepRepo = new SleepRepository(sleepTestData);
 let activityRepo = new ActivityRepository(activityTestData);
 
+let number = () => {
+  return Math.floor(Math.random()*10)
+}
 let loadCardInfo = (user, userRepo) => {
-  let number = Math.floor(Math.random()*10)
-  console.log(number)
   cardName.innerText = user.name;
   address.innerText = user.address;
-  userImage.src = `../stock_photos/${number}.jpeg`
+  userImage.src = `../stock_photos/${number()}.jpeg`
   email.innerText = user.email;
   dailyStepGoal.innerText = `Your Step Goal: ${user.dailyStepGoal}`
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
@@ -93,7 +94,7 @@ let displayFriends = (user, data) => {
     friendsList.insertAdjacentHTML('beforeEnd',
     `<div class="friends-card">
       <h3>${friend.name}</h3>
-      <!-- <img class="user-image" src="http://i.pravatar.cc/150?img=11" alt=""> -->
+      <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
       <h3>Friend's Step Goal</h3>
       <h3>${friend.dailyStepGoal}</h3>
     </div>`
@@ -105,18 +106,21 @@ let displayTopThree = (user, usersData, activityData, date) => {
   let winner = user.getBestWalkersData(usersData, activityData, date)
   firstPlaceCard.innerHTML = `<div class="first-place rank-card">
     <h3> First Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[0].name} </h4>
     <h4> Average Steps Over The Week </h4>
     <h4> ${winner[0].averageStep} </h4>
   </div>`
   secondPlaceCard.innerHTML = `<div class="second-place rank-card">
     <h3> Second Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[1].name} </h4>
     <h4> Average Steps Over The Week </h4>
     <h4> ${winner[1].averageStep} </h4>
   </div>`
   thirdPlaceCard.innerHTML = `<div class="third-place rank-card">
     <h3> Third Place! </h3>
+    <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[2].name} </h4>
     <h4> Average Steps Over The Week </h4>
     <h4> ${winner[2].averageStep} </h4>
