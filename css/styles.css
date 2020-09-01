@@ -12,6 +12,10 @@ div > canvas {
     padding: 3%;
 }
 
+img{
+  max-width: 10vw
+}
+
 .nav-bar, .welcome-section{
     background-color: #292F36;
     display: flex;
@@ -23,9 +27,7 @@ div > canvas {
 
 .container-one{
     display: flex;
-    /* color: gold; */
     flex-direction: rows;
-    /* background-color: teal; */
 }
 
 .fa-bars{
@@ -154,27 +156,32 @@ section > h2{
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-}
-
-.cards-wrap-friends{
   overflow: scroll;
 }
 
 
 .friends-card, .rank-card{
+  font-size: .8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  width: auto;
-  margin: 5vh;
+  min-width: 15vw;
 }
 
-.daily-steps, .distance-walked, .minutes-active{
+.goals, .list, .card-title, .daily-steps, .distance-walked, .minutes-active{
     font-family: 'Fredoka One', cursive;
     font-size: 1.5em;
     text-align: center;
     margin: 5%;
+}
+
+#daily-steps, #minutes-active, #distance-walked{
+  font-family: 'Comfortaa', cursive;
+  padding-top: .5vh;
+}
+.card-title{
+  font-size: 1rem;
 }
 
 .activity-title, .hydration-title, .sleep-title, .user-title{
@@ -288,6 +295,10 @@ section > h2{
 
     .wel-message, .status-message {
         font-size: 1.2em;
+    }
+
+    .rank-card {
+      padding-left: 2vw;
     }
 }
 

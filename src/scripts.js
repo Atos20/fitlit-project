@@ -95,7 +95,7 @@ let displayFriends = (user, data) => {
     `<div class="friends-card">
       <h3>${friend.name}</h3>
       <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
-      <h3>Friend's Step Goal</h3>
+      <h3 class="card-title">Friend's Step Goal</h3>
       <h3>${friend.dailyStepGoal}</h3>
     </div>`
   )
@@ -105,24 +105,24 @@ let displayFriends = (user, data) => {
 let displayTopThree = (user, usersData, activityData, date) => {
   let winner = user.getBestWalkersData(usersData, activityData, date)
   firstPlaceCard.innerHTML = `<div class="first-place rank-card">
-    <h3> First Place! </h3>
+    <h3 class="card-title"> First Place! </h3>
     <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[0].name} </h4>
-    <h4> Average Steps Over The Week </h4>
+    <h4 class="card-title"> Ave. Daily Steps</h4>
     <h4> ${winner[0].averageStep} </h4>
   </div>`
   secondPlaceCard.innerHTML = `<div class="second-place rank-card">
-    <h3> Second Place! </h3>
+    <h3 class="card-title"> Second Place! </h3>
     <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[1].name} </h4>
-    <h4> Average Steps Over The Week </h4>
+    <h4 class="card-title"> Ave. Daily Steps </h4>
     <h4> ${winner[1].averageStep} </h4>
   </div>`
   thirdPlaceCard.innerHTML = `<div class="third-place rank-card">
-    <h3> Third Place! </h3>
+    <h3 class="card-title"> Third Place! </h3>
     <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
     <h4> ${winner[2].name} </h4>
-    <h4> Average Steps Over The Week </h4>
+    <h4 class="card-title"> Ave. Daily Steps </h4>
     <h4> ${winner[2].averageStep} </h4>
   </div>`
 }
@@ -280,7 +280,7 @@ let displayDailySteps = (user, date) => {
 
 let displayDailyMilesAndMinutes = (user, date) => {
   distanceWalked.innerText = `${activityRepo.getMilesPerDay(user, date)} miles`
-  minutesActive.innerText = `${activityRepo.minutesActiveByDate(user, date)} minutes`
+  minutesActive.innerText = `${activityRepo.minutesActiveByDate(user, date)} mins`
 }
 
 let displayDailyActivityVsAll = (user, date) => {
