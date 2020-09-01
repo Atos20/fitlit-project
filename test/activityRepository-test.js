@@ -55,7 +55,7 @@ it('should be a function', () => {
 
 ////For a user, did they reach their step goal for a given day (specified by a date)?
   it('should evaluate if users reached their desired step goal or not' , () => {
-    expect(activityRepo.stepGoalSuccess(user, today)).to.equal('Paco diPoi, keep walking')
+    expect(activityRepo.stepGoalSuccess(user, today)).to.equal("`Let's keep walking to meet your goal!`")
   });
 
   ////For a user, find all the days where they exceeded their step goal

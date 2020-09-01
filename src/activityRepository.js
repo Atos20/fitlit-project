@@ -43,9 +43,9 @@ class ActivityRepository {
     const retrievedUsersInfo = this.data.filter(userInfo => userInfo.userID === user.id);
     const desiredDate = retrievedUsersInfo.find(info => info.date === date);
     if (desiredDate.numSteps > user.dailyStepGoal) {
-        return `Congratulation ${user.name}, you have reached your goal of ${user.dailyStepGoal} steps!!`
+        return `Congratulation's, you have reached your goal of ${user.dailyStepGoal} steps!!`
     } else {
-        return `${user.name}, keep walking`
+        return `Let's keep walking to meet your goal!`
     }
   }
 
