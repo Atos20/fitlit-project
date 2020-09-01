@@ -22,4 +22,11 @@ describe('User', () => {
   it('should be able to create a line chart', () => {
     expect(chartTemplate2.type).to.equal('line');
   });
+  it('should be able to have labels',() => {
+    expect(chartTemplate1.data.labels).to.deep.equal(['one', 'two']);
+  });
+  it('should be able to have different labels', () => {
+    expect(chartTemplate2.data.labels).to.deep.equal(['three', 'four']);
+  });
+
 })
