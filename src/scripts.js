@@ -93,7 +93,7 @@ let displayFriends = (user, data) => {
   friends.forEach((friend) => {
     friendsList.insertAdjacentHTML('beforeEnd',
     `<div class="friends-card">
-      <h3>${friend.name}</h3>
+      <h3 class="card-title">${friend.name}</h3>
       <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
       <h3 class="card-title">Friend's Step Goal</h3>
       <h3>${friend.dailyStepGoal}</h3>
