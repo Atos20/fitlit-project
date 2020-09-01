@@ -14,8 +14,8 @@ class User {
     return firstName[0];
   }
 
-  retrieveFriendsList(user, usersData){
-    const friendsList = user.friends.map( friendId => {
+  retrieveFriendsList(usersData){
+    const friendsList = this.friends.map( friendId => {
       const locateInformation = usersData.find(entry => entry.id === friendId)
       return locateInformation
     })
@@ -34,17 +34,17 @@ class User {
     return getAverageStepCount
   }
 
-  getFriendsStepCount(user, usersData, activityData, date) {
-    const friendsList = this.retrieveFriendsList(user, usersData);
-    const  weeklyFriendsStepAverage = friendsList.map(friend => { 
+  getFriendsStepCount(usersData, activityData, date) {
+    const friendsList = this.retrieveFriendsList(usersData);
+    const  weeklyFriendsStepAverage = friendsList.map(friend => {
       const total = this.getUserStepCount(friend, activityData, date)
-      return { 'id': friend.id, 'averageStep':total};
+      return { 'id': friend.id, 'name': friend.name, 'averageStep':total};
     })
     return weeklyFriendsStepAverage
   }
 
-  getBestWalkersData(user, usersData, activityData, date) {
-    const friendsWeeklyStepsAverage = this.getFriendsStepCount(user, usersData, activityData, date);
+  getBestWalkersData(usersData, activityData, date) {
+    const friendsWeeklyStepsAverage = this.getFriendsStepCount(usersData, activityData, date);
     const sortedFriendsByStepCount = friendsWeeklyStepsAverage.sort((a, b) => b.averageStep - a.averageStep);
     let bestWalkers = [sortedFriendsByStepCount[0], sortedFriendsByStepCount[1], sortedFriendsByStepCount[2]];
     return bestWalkers
