@@ -98,6 +98,28 @@ let displayFriends = (user, data) => {
   })
 }
 
+let displayTopThree = (user, usersData, activityData, date) => {
+  let winner = user.getBestWalkersData(usersData, activityData, date)
+  firstPlaceCard.innerHTML = `<div class="first-place rank-card">
+    <h3> First Place! </h3>
+    <h4> ${winner[0].name} </h4>
+    <h4> Average Steps Over The Week </h4>
+    <h4> ${winner[0].averageStep} </h4>
+  </div>`
+  secondPlaceCard.innerHTML = `<div class="second-place rank-card">
+    <h3> Second Place! </h3>
+    <h4> ${winner[1].name} </h4>
+    <h4> Average Steps Over The Week </h4>
+    <h4> ${winner[1].averageStep} </h4>
+  </div>`
+  thirdPlaceCard.innerHTML = `<div class="third-place rank-card">
+    <h3> Third Place! </h3>
+    <h4> ${winner[2].name} </h4>
+    <h4> Average Steps Over The Week </h4>
+    <h4> ${winner[2].averageStep} </h4>
+  </div>`
+}
+
 let displayDailyAndAverageSleepData = (user, today) => {
   const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
   const dailyData = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
@@ -405,6 +427,7 @@ let loadUserData = (user, userRepo, data) => {
   displayWeeklyActivity(user, otherToday)
   displayDailyActivityVsAll(user, otherToday)
   displayFriends(user, data);
+  displayTopThree(user, data, activityRepo.data, otherToday)
 }
 
 
