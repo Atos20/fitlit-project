@@ -1,5 +1,5 @@
 class ChartTemplate {
-  constructor(type, labels, title, data) {
+  constructor(type, labels, title, data, options) {
     this.type = type, //needs to be a string
     this.data = {
       labels: labels || [], //need to be an array
@@ -27,7 +27,7 @@ class ChartTemplate {
         borderWidth: 1
       }]
     },
-    this.options = {
+    this.options = options || {
       scales: {
         yAxes: [{
           ticks: {
@@ -35,7 +35,7 @@ class ChartTemplate {
           }
         }]
       }
-    }
+    } 
   }
 }
 
