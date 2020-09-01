@@ -7,8 +7,8 @@ describe('User', () => {
   let chartTemplate1;
   let chartTemplate2;
   beforeEach(() => {
-    chartTemplate1 = new ChartTemplate('bar', ['one', 'two'], 'this is a bar chart', [])
-    chartTemplate2 = new ChartTemplate('line', ['three', 'four'], 'this is a line chart', [])
+    chartTemplate1 = new ChartTemplate('bar', ['one', 'two'], 'this is a bar chart', [], {})
+    chartTemplate2 = new ChartTemplate('line', ['three', 'four'], 'this is a line chart', [], {})
   })
   it('it should be a function', () => {
     expect(ChartTemplate).to.be.a('function');
@@ -28,11 +28,20 @@ describe('User', () => {
   it('should be able to have different labels', () => {
     expect(chartTemplate2.data.labels).to.deep.equal(['three', 'four']);
   });
-  it('should be able to have labels',() => {
+  it('should be able to have label',() => {
     expect(chartTemplate1.data.datasets[0].label).to.equal('this is a bar chart');
   });
-  it('should be able to have different labels', () => {
+  it('should be able to have different label', () => {
     expect(chartTemplate2.data.datasets[0].label).to.equal('this is a line chart');
+  });
+  it('should be able to have a data set',() => {
+    expect(chartTemplate1.data.datasets[0].data).to.deep.equal([]);
+  });
+  it('should be able to have a different set of data', () => {
+    expect(chartTemplate2.data.datasets[0].data).to.deep.equal([]);
+  });
+  it('should be able to have an option property', () => {
+    expect(chartTemplate1.options).to.deep.equal({});
   });
 
 })
