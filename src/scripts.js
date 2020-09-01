@@ -17,7 +17,7 @@ const minutesActive = document.querySelector("#minutes-active")
 const distanceWalked = document.querySelector("#distance-walked")
 const activityVsAllChart = document.querySelector("#activity-data-vs-all-daily").getContext('2d');
 const activityWeeklyChart = document.querySelector("#weekly-activty").getContext('2d');
-
+const statusMessage = document.querySelector(".status-message")
 
 let trialData1 = {
   "id": 2,
@@ -117,7 +117,7 @@ let displayDailyAndAverageSleepData = (user, today) => {
             ],
             borderWidth: 1
         },{
-            label: 'Average', 
+            label: 'Average',
             data: aveData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -201,7 +201,7 @@ let weeklySleepQualityAndSleepHours = (user, today) => {
             ],
             borderWidth: 1,
         },{
-            label: 'Sleep Quality', 
+            label: 'Sleep Quality',
             data: data2,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -236,12 +236,13 @@ new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
-  dailySteps.innerText = activityRepo.stepGoalSuccess(user, date)
-  // console.log(activityRepo.returnPriorWeekDates(user, date))
+  dailySteps.innerText = activityRepo.getStepsPerDay(user, date)
+  statusMessage.innerText = activityRepo.stepGoalSuccess(user, date)
 }
 
-let displayDailyMiles = (user, date) => {
+let displayDailyMilesAndMinutes = (user, date) => {
   distanceWalked.innerText = `${activityRepo.getMilesPerDay(user, date)} miles`
+  minutesActive.innerText = `${activityRepo.minutesActiveByDate(user, date)} minutes`
 }
 
 let displayDailyActivityVsAll = (user, date) => {
@@ -298,7 +299,7 @@ let displayDailyActivityVsAll = (user, date) => {
         }]
     },
     options: {
-      
+
         scales: {
             yAxes: [{
                 ticks: {
@@ -394,7 +395,7 @@ let loadUserData = (user, userRepo) => {
   // displayWeeklySleepHours(user, otherToday)
   // displayWeeklySleepQuality(user, otherToday)
   displayDailySteps(user, otherToday)
-  displayDailyMiles(user, otherToday)
+  displayDailyMilesAndMinutes(user, otherToday)
   displayWeeklyActivity(user, otherToday)
   displayDailyActivityVsAll(user, otherToday)
 }
