@@ -38,3 +38,7 @@ class ChartTemplate {
     }
   }
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = ChartTemplate;
+}
