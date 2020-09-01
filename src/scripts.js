@@ -19,6 +19,7 @@ const secondPlaceCard = document.querySelector(".second-place")
 const thirdPlaceCard = document.querySelector(".third-place")
 const friendsList = document.querySelector(".cards-wrap-friends")
 const userImage = document.querySelector(".user-image")
+const userSelect = document.querySelector(".user-drop")
 
 
 
@@ -31,6 +32,20 @@ let visibleUser = userRepo.userInstances[0]
 const hydrationRepo = new HydrationRepository(hydrationData);
 const sleepRepo = new SleepRepository(sleepData);
 const activityRepo = new ActivityRepository(activityData);
+
+const toggleUser = () => {
+  if (userSelect.value === "Erick Schader") {
+    visibleUser = userRepo.userInstances[4]
+  } else if (userSelect.value === "Jordan Lind") {
+    visibleUser = userRepo.userInstances[49]
+  } else if (userSelect.value === "Jasper Strache") {
+    visibleUser = userRepo.userInstances[47]
+  } else if (userSelect.value === "Deborah Keebler") {
+    visibleUser = userRepo.userInstances[29]
+  }
+  console.log(visibleUser)
+  loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
+}
 
 let number = () => {
   return Math.floor(Math.random()*10)
@@ -407,5 +422,5 @@ let loadUserDataForDay = (user, userRepo, today, data) => {
   displayTopThree(user, data, activityRepo.data, today)
 }
 
-
-window.onload = loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
+window.addEventListener('onload', loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData));
+userSelect.addEventListener('change', toggleUser)
