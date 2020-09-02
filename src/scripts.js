@@ -20,11 +20,26 @@ const thirdPlaceCard = document.querySelector(".third-place")
 const friendsList = document.querySelector(".cards-wrap-friends")
 const userImage = document.querySelector(".user-image")
 const userSelect = document.querySelector(".user-drop")
+const userDate = document.querySelector("#user-date")
+const submit = document.querySelector(".find-date-button")
 
+let chart1
+let chart2
+let chart3
+let chart4
+let chart5
+let chart6
 
+let destroyAll = () => {
+  chart1.destroy()
+  chart2.destroy()
+  chart3.destroy()
+  chart4.destroy()
+  chart5.destroy()
+  chart6.destroy()
+}
 
-
-const today = "2019/09/22";
+let today = "2019/09/22";
 const userRepo = new UserRepository(userData)
 userRepo.createUsers()
 let visibleUser = userRepo.userInstances[0]
@@ -34,6 +49,7 @@ const sleepRepo = new SleepRepository(sleepData);
 const activityRepo = new ActivityRepository(activityData);
 
 const toggleUser = () => {
+  destroyAll()
   if (userSelect.value === "Erick Schader") {
     visibleUser = userRepo.userInstances[4]
   } else if (userSelect.value === "Jordan Lind") {
@@ -46,6 +62,8 @@ const toggleUser = () => {
   console.log(visibleUser)
   loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
 }
+
+
 
 let number = () => {
   return Math.floor(Math.random()*10)
@@ -64,8 +82,8 @@ let displayDailyWaterConsumption = (user, date) => {
   const result = hydrationRepo.returnDaysHydration(user.id, date);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
-  const dailyHydrationTemplate = new ChartTemplate('polarArea', labels, 'Daily Water Consumption',[result, 50])
-  new Chart(waterDailyChart, dailyHydrationTemplate);
+  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 50])
+  chart1 = new Chart(waterDailyChart, dailyHydrationTemplate);
 }
 
 let displayWeeklyWaterConsumption = (user, date) => {
@@ -74,7 +92,7 @@ let displayWeeklyWaterConsumption = (user, date) => {
   const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
   const values = hydrationRepo.retriveHydrationValues(user.id, date) ;
   const weeklyHydrationTemplate = new ChartTemplate('bar', formatedDates, 'Weekly Water Consumption', values)
-  new Chart(waterWeeklyChart, weeklyHydrationTemplate);
+  chart2 = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
 
 
@@ -180,7 +198,7 @@ let displayDailyAndAverageSleepData = (user, date) => {
         }
     }
   };
-new Chart(sleepAllTimeChart, sleepTemplate)
+chart3 = new Chart(sleepAllTimeChart, sleepTemplate)
 }
 
 
@@ -255,7 +273,7 @@ let weeklySleepQualityAndSleepHours = (user, date) => {
         }
     }
 };
-new Chart(sleepWeeklyHChart, sleepTemplate)
+chart4 = new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
@@ -322,7 +340,6 @@ let displayDailyActivityVsAll = (user, date) => {
         }]
     },
     options: {
-
         scales: {
             yAxes: [{
                 ticks: {
@@ -332,7 +349,7 @@ let displayDailyActivityVsAll = (user, date) => {
         }
     }
 };
-new Chart(activityVsAllChart, vsAllActivityTemplate);
+chart5 = new Chart(activityVsAllChart, vsAllActivityTemplate);
 }
 
 let displayWeeklyActivity = (user, date) => {
@@ -400,7 +417,7 @@ let displayWeeklyActivity = (user, date) => {
         }
     }
 };
-  new Chart(activityWeeklyChart, weeklyActivityTemplate);
+chart6 = new Chart(activityWeeklyChart, weeklyActivityTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
@@ -424,3 +441,4 @@ let loadUserDataForDay = (user, userRepo, today, data) => {
 
 window.addEventListener('onload', loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData));
 userSelect.addEventListener('change', toggleUser)
+submit.addEventListener('click', changeToday)
