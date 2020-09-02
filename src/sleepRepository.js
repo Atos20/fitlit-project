@@ -18,47 +18,33 @@ class SleepRepository {
   }
 
   specificNightsHours(id, date) {
-    let specificNight = this.data.find((entry) => {
-      return entry.userID === id && entry.date === date
-    })
-    return specificNight.hoursSlept
+    return this.data.find(entry => entry.userID === id && entry.date === date).hoursSlept
   }
 
   specificNightsQuality(id, date) {
-    let specificNight = this.data.find((entry) => {
-      return entry.userID === id && entry.date === date
-    })
-    return specificNight.sleepQuality
+    return this.data.find(entry => entry.userID === id && entry.date === date).sleepQuality
   }
 
   specificWeeksHours(id, date) {
-    let userData = this.data.filter((entry) => entry.userID === id)
-    let endWeek = userData.find((entry) => entry.date === date)
-    let index = userData.indexOf(endWeek)
+    let userData = this.data.filter(entry => entry.userID === id)
+    let index = userData.indexOf(userData.find(entry => entry.date === date))
     let priorWeek = userData.slice(index - 6, index + 1)
-    let arrWeek = priorWeek.map((entry) => {
-      return {[entry.date]: entry.hoursSlept}
-    })
+    let arrWeek = priorWeek.map(entry => ({[entry.date]: entry.hoursSlept}))
     return arrWeek.reduce((acc, obj) => {
-      let value = Object.values(obj)[0]
-      let key = Object.keys(obj)[0]
-      acc[key] = value
+      acc[Object.keys(obj)[0]] = Object.values(obj)[0]
       return acc
     }, {})
   }
 
   specificWeeksQuality(id, date) {
-    let userData = this.data.filter((entry) => entry.userID === id)
-    let endWeek = userData.find((entry) => entry.date === date)
-    let index = userData.indexOf(endWeek)
+    let userData = this.data.filter(entry => entry.userID === id)
+    let index = userData.indexOf(userData.find(entry => entry.date === date))
     let priorWeek = userData.slice(index - 6, index + 1)
     let arrWeek = priorWeek.map((entry) => {
       return {[entry.date]: entry.sleepQuality}
     })
     return arrWeek.reduce((acc, obj) => {
-      let value = Object.values(obj)[0]
-      let key = Object.keys(obj)[0]
-      acc[key] = value
+      acc[Object.keys(obj)[0]] = Object.values(obj)[0]
       return acc
     }, {})
   }
