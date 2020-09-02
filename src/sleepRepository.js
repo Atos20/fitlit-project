@@ -2,13 +2,12 @@ class SleepRepository {
   constructor(data) {
     this.data = data
   }
+
   averageSleepHoursAllTime(id) {
-    let userData = this.data.filter((entry) => entry.userID === id)
-    let userTotal = userData.reduce((sum, entry)=> {
-      return sum + entry.hoursSlept
-    }, 0)
-    let average = Math.round(userTotal / userData.length * 10)
-    return (average / 10)
+    let userData = this.data.filter(entry => entry.userID === id)
+    let userTotal = userData.reduce((sum, entry) => sum + entry.hoursSlept, 0)
+    let average = userTotal / userData.length
+    return parseFloat(average.toFixed(1))
   }
 
   averageSleepQualityAllTime(id) {
