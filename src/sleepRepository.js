@@ -46,51 +46,33 @@ class SleepRepository {
     return arrWeek.reduce((acc, obj) => {
       acc[Object.keys(obj)[0]] = Object.values(obj)[0]
       return acc
-    }, {})
+    }, {});
   }
 
   allTimeQualityAverage() {
-    const allHours = this.data.reduce((sum, entry) => {
-      return sum + entry.sleepQuality
-    }, 0)
-    const average = Math.round(allHours / this.data.length * 10)
-    return average / 10
+    const allHours = this.data.reduce((sum, entry) => sum + entry.sleepQuality, 0)
+    const average = allHours / this.data.length
+    return parseFloat(average.toFixed(1));
   }
 
   weeksGoodSleepers(date) {
     let allUsersAndData = this.data.reduce((acc, obj) => {
-      let key = obj.userID
-      if (!acc[key]) {
-        acc[key] = []
-      }
-      acc[key].push(obj)
+      !acc[obj.userID] ? acc[obj.userID] = [] : false
+      acc[obj.userID].push(obj)
       return acc
     }, {})
-    const numUsers = Object.keys(allUsersAndData)
-    const user1Date = (entry) => entry.date === date
-    const dateIndex = allUsersAndData['1'].findIndex(user1Date)
-    numUsers.forEach((item) => {
+    const dateIndex = allUsersAndData['1'].findIndex(entry => entry.date === date)
+    Object.keys(allUsersAndData).forEach((item) => {
       allUsersAndData[item] = allUsersAndData[item].slice(dateIndex - 6, dateIndex + 1)
       allUsersAndData[item] = allUsersAndData[item].reduce((sum, day) => {
         return sum + day.sleepQuality
-      }, 0)
-      allUsersAndData[item] = allUsersAndData[item] / 7
+      }, 0) / 7
     })
-    const allHours = this.data.reduce((sum, entry) => {
-      return sum + entry.sleepQuality
-    }, 0)
-    const averageQualityThisWeekAllUsers = Object.entries(allUsersAndData)
-    averageQualityThisWeekAllUsers.sort((a,b) => {
-        return b[1] - a[1]
-    })
-    let averagingOver3 = []
-    averageQualityThisWeekAllUsers.forEach((user) => {
-      if (user[1] > 3) {averagingOver3.push(user[0])}
-    })
-    return averagingOver3
+    return Object.entries(allUsersAndData).reduce((list, user) => {
+      user[1] > 3 ? list.push(user[0]) : false
+      return list
+    }, [])
   }
-  //Would like this to pass a test where expected end result is numbers not strings
-  //obviously this is a hefty chunck of code I want to pare down.
 
   topSleeper(date) {
     const allOnDay = this.data.filter((entry) => {
