@@ -63,7 +63,13 @@ const toggleUser = () => {
   loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
 }
 
-
+const changeToday = () => {
+  destroyAll()
+  today = userDate.value
+  today = moment(today).format("YYYY/MM/DD")
+  console.log(today)
+  loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
+}
 
 let number = () => {
   return Math.floor(Math.random()*10)
