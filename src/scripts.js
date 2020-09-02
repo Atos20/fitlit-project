@@ -1,5 +1,3 @@
-// const HydrationRepository = require("./hydrationRepository");
-
 const cardName = document.querySelector(".card-name");
 const address = document.querySelector(".address");
 const email = document.querySelector(".email");
@@ -21,42 +19,62 @@ const secondPlaceCard = document.querySelector(".second-place")
 const thirdPlaceCard = document.querySelector(".third-place")
 const friendsList = document.querySelector(".cards-wrap-friends")
 const userImage = document.querySelector(".user-image")
+const userSelect = document.querySelector(".user-drop")
+const userDate = document.querySelector("#user-date")
+const submit = document.querySelector(".find-date-button")
 
+let chart1
+let chart2
+let chart3
+let chart4
+let chart5
+let chart6
 
+let destroyAll = () => {
+  chart1.destroy()
+  chart2.destroy()
+  chart3.destroy()
+  chart4.destroy()
+  chart5.destroy()
+  chart6.destroy()
+}
 
+let today = "2019/09/22";
+const userRepo = new UserRepository(userData)
+userRepo.createUsers()
+let visibleUser = userRepo.userInstances[0]
 
-let trialData1 = {
-  "id": 2,
-  "name": "Christopher Jonson",
-  "address": "123 5th Street, Denver CO 12345",
-  "email": "Christopher@hotmail.com",
-  "strideLength": 4,
-  "dailyStepGoal": 20000,
-  "friends": [ 1, 3, 4]
-};
+const hydrationRepo = new HydrationRepository(hydrationData);
+const sleepRepo = new SleepRepository(sleepData);
+const activityRepo = new ActivityRepository(activityData);
 
-let trialData2 = {
-  "id": 10,
-  "name": "Mar Matlak",
-  "address": "321 100th Street, Boulder CO 54321",
-  "email": "Mar@hotmail.com",
-  "strideLength": 10,
-  "dailyStepGoal": 10000,
-  "friends": [ 10, 30, 40]
-};
+const toggleUser = () => {
+  destroyAll()
+  if (userSelect.value === "Erick Schader") {
+    visibleUser = userRepo.userInstances[4]
+  } else if (userSelect.value === "Jordan Lind") {
+    visibleUser = userRepo.userInstances[49]
+  } else if (userSelect.value === "Jasper Strache") {
+    visibleUser = userRepo.userInstances[47]
+  } else if (userSelect.value === "Deborah Keebler") {
+    visibleUser = userRepo.userInstances[29]
+  }
+  console.log(visibleUser)
+  loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
+}
 
-let today = "2019/06/7";
-let otherToday = "2020/08/22";
-let user1 = new User(dummyUserData[0])
-let user2 = new User(trialData2)
-let userRepo = new UserRepository([user1, user2])
-let hydrationRepo = new HydrationRepository(dummyHydrationData);
-let sleepRepo = new SleepRepository(sleepTestData);
-let activityRepo = new ActivityRepository(activityTestData);
+const changeToday = () => {
+  destroyAll()
+  today = userDate.value
+  today = moment(today).format("YYYY/MM/DD")
+  console.log(today)
+  loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
+}
 
 let number = () => {
   return Math.floor(Math.random()*10)
 }
+
 let loadCardInfo = (user, userRepo) => {
   cardName.innerText = user.name;
   address.innerText = user.address;
@@ -66,23 +84,21 @@ let loadCardInfo = (user, userRepo) => {
   averageStepGoal.innerText = `Average Step Goal of All Users: ${userRepo.calculateAverageStepGoalAll()}`
 }
 
-let displayDailyWaterConsumption = (user, today) => {
-  const result = hydrationRepo.returnDaysHydration(user.id, today);
+let displayDailyWaterConsumption = (user, date) => {
+  const result = hydrationRepo.returnDaysHydration(user.id, date);
   const labels = ['Daily Water Consumption']
   const listOfDates = [];
-  const dailyHydrationTemplate = new ChartTemplate('polarArea', labels, 'Daily Water Consumption',[result, 50])
-  const dailyHydrationChart = new Chart(waterDailyChart, dailyHydrationTemplate);
-  return result;
+  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 50])
+  chart1 = new Chart(waterDailyChart, dailyHydrationTemplate);
 }
 
-let displayWeeklyWaterConsumption = (user, today) => {
-  const data = hydrationRepo.returnWeeksHydration(user.id, today);
-  const weekDates = hydrationRepo.retriveHydrationDates(user.id, today) ;
+let displayWeeklyWaterConsumption = (user, date) => {
+  const data = hydrationRepo.returnWeeksHydration(user.id, date);
+  const weekDates = hydrationRepo.retriveHydrationDates(user.id, date) ;
   const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
-  const values = hydrationRepo.retriveHydrationValues(user.id, today) ;
+  const values = hydrationRepo.retriveHydrationValues(user.id, date) ;
   const weeklyHydrationTemplate = new ChartTemplate('bar', formatedDates, 'Weekly Water Consumption', values)
-  const weeklyHydrationChart = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
-
+  chart2 = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
 
 
@@ -102,8 +118,8 @@ let displayFriends = (user, data) => {
   })
 }
 
-let displayTopThree = (user, usersData, activityData, date) => {
-  let winner = user.getBestWalkersData(usersData, activityData, date)
+let displayTopThree = (user, usersRepo, activityData, date) => {
+  let winner = user.getBestWalkersData(usersRepo, activityData, date)
   firstPlaceCard.innerHTML = `<div class="first-place rank-card">
     <h3 class="card-title"> First Place! </h3>
     <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
@@ -127,9 +143,9 @@ let displayTopThree = (user, usersData, activityData, date) => {
   </div>`
 }
 
-let displayDailyAndAverageSleepData = (user, today) => {
+let displayDailyAndAverageSleepData = (user, date) => {
   const aveData = [sleepRepo.averageSleepHoursAllTime(user.id), sleepRepo.averageSleepQualityAllTime(user.id)];
-  const dailyData = [sleepRepo.specificNightsHours(user.id, today), sleepRepo.specificNightsQuality(user.id, today)];
+  const dailyData = [sleepRepo.specificNightsHours(user.id, date), sleepRepo.specificNightsQuality(user.id, date)];
   let sleepTemplate = {
     type: 'bar',
     data: {
@@ -187,29 +203,22 @@ let displayDailyAndAverageSleepData = (user, today) => {
             }]
         }
     }
-};
-new Chart(sleepAllTimeChart, sleepTemplate)
+  };
+chart3 = new Chart(sleepAllTimeChart, sleepTemplate)
 }
 
-// let displayWeeklySleepHours= (user, today) => {//=1
-//   const results= sleepRepo.specificWeeksHours(user.id, today)
-//   const data = Object.values(results)
-//   const labels = Object.keys(results)
-//   const weeklySleepHTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Hours", data)
-//   const weeklySleepHChart = new Chart(sleepWeeklyHChart, weeklySleepHTemplate);
-// }
 
-let displayWeeklySleepQuality = (user, today) => {//= 2
-  const results = sleepRepo.specificWeeksQuality(user.id, today);
+let displayWeeklySleepQuality = (user, date) => {//= 2
+  const results = sleepRepo.specificWeeksQuality(user.id, date);
   const data = Object.values(results)
   const labels = Object.keys(results)
   const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data)
   const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
 }
 
-let weeklySleepQualityAndSleepHours = (user, today) => {
-  const hoursSlept = sleepRepo.specificWeeksHours(user.id, today);//=> data1
-  const sleepQuality = sleepRepo.specificWeeksQuality(user.id, today);//=> data2
+let weeklySleepQualityAndSleepHours = (user, date) => {
+  const hoursSlept = sleepRepo.specificWeeksHours(user.id, date);//=> data1
+  const sleepQuality = sleepRepo.specificWeeksQuality(user.id, date);//=> data2
   const data1 = Object.values(hoursSlept);
   const data2 = Object.values(sleepQuality);
   const labels = Object.keys(sleepQuality); //=> dates
@@ -270,7 +279,7 @@ let weeklySleepQualityAndSleepHours = (user, today) => {
         }
     }
 };
-new Chart(sleepWeeklyHChart, sleepTemplate)
+chart4 = new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
@@ -337,7 +346,6 @@ let displayDailyActivityVsAll = (user, date) => {
         }]
     },
     options: {
-
         scales: {
             yAxes: [{
                 ticks: {
@@ -347,7 +355,7 @@ let displayDailyActivityVsAll = (user, date) => {
         }
     }
 };
-  const dailyActivityvsAllChart = new Chart(activityVsAllChart, vsAllActivityTemplate);
+chart5 = new Chart(activityVsAllChart, vsAllActivityTemplate);
 }
 
 let displayWeeklyActivity = (user, date) => {
@@ -415,27 +423,28 @@ let displayWeeklyActivity = (user, date) => {
         }
     }
 };
-  const weeklyActivityChart = new Chart(activityWeeklyChart, weeklyActivityTemplate);
+chart6 = new Chart(activityWeeklyChart, weeklyActivityTemplate);
 }
 
 let updateWelcomeMessage = (user) => {
   welMessage.innerText = `Welcome ${user.getFirstName()}! Let's have another great day!`
 }
 
-let loadUserData = (user, userRepo, data) => {
+let loadUserDataForDay = (user, userRepo, today, data) => {
   loadCardInfo(user, userRepo);
   updateWelcomeMessage(user);
   displayDailyWaterConsumption(user, today)
   displayWeeklyWaterConsumption(user, today)
-  displayDailyAndAverageSleepData(user, otherToday)
-  weeklySleepQualityAndSleepHours(user, otherToday)
-  displayDailySteps(user, otherToday)
-  displayDailyMilesAndMinutes(user, otherToday)
-  displayWeeklyActivity(user, otherToday)
-  displayDailyActivityVsAll(user, otherToday)
+  displayDailyAndAverageSleepData(user, today)
+  weeklySleepQualityAndSleepHours(user, today)
+  displayDailySteps(user, today)
+  displayDailyMilesAndMinutes(user, today)
+  displayWeeklyActivity(user, today)
+  displayDailyActivityVsAll(user, today)
   displayFriends(user, data);
-  displayTopThree(user, data, activityRepo.data, otherToday)
+  displayTopThree(user, data, activityRepo.data, today)
 }
 
-
-window.onload = loadUserData(user1, userRepo, dummyUserData)
+window.addEventListener('onload', loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData));
+userSelect.addEventListener('change', toggleUser)
+submit.addEventListener('click', changeToday)
