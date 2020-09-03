@@ -14,7 +14,7 @@ class User {
     return firstName[0];
   }
 
-  retrieveFriendsList(usersData){
+  retrieveFriendsList(usersData) {
     const friendsList = this.friends.map( friendId => {
       const locateInformation = usersData.find(entry => entry.id === friendId)
       return locateInformation
@@ -23,10 +23,10 @@ class User {
   }
 
   getUserStepCount(user, activityData, date) {
-    const userDesiredDate = activityData.filter(entry => entry.userID=== user.id);
+    const userDesiredDate = activityData.filter(entry => entry.userID === user.id);
     const locateDate = userDesiredDate.find( entry => entry.date === date);
     const findIndex = userDesiredDate.indexOf(locateDate);
-    const getDesiredWeek = userDesiredDate.slice(findIndex -6, findIndex +1);
+    const getDesiredWeek = userDesiredDate.slice(findIndex - 6, findIndex + 1);
     const getAverageStepCount = getDesiredWeek.reduce((totalAverage, userData) => {
       totalAverage += userData.numSteps
       return totalAverage
@@ -38,7 +38,7 @@ class User {
     const friendsList = this.retrieveFriendsList(usersData);
     const  weeklyFriendsStepAverage = friendsList.map(friend => {
       const total = this.getUserStepCount(friend, activityData, date)
-      return { 'id': friend.id, 'name': friend.name, 'averageStep':total};
+      return { 'id': friend.id, 'name': friend.name, 'averageStep': total};
     })
     return weeklyFriendsStepAverage
   }

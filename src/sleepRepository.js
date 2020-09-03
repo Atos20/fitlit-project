@@ -75,17 +75,25 @@ class SleepRepository {
   }
 
   topSleeper(date) {
-    const allOnDay = this.data.filter((entry) => {
-      return entry.date === date
-    })
-    const reOrder = allOnDay.sort((a, b) =>{
-      return a.hoursSlept - b.hoursSlept
-    })
-    const topSleeper = reOrder.pop()
-    return topSleeper.userID
+    const allOnDay = this.data.filter(entry => entry.date === date);
+    return allOnDay.sort((a, b) => b.hoursSlept - a.hoursSlept)[0].userID
+  }
+
+  findAverageSleepQualityByMonth(date) {
+    let newObj = this.data.reduce((acc, entry) => {
+      entry.date = moment(entry.date)
+      let key = entry.date.month()
+      !acc[key] ? acc[key] = [] : false
+      acc[key].push(entry.sleepQuality)
+      let total = acc[key].reduce((acc, value) => acc += value)
+      acc[key] = [total / acc[key].length]
+      return acc
+    }, {})
+    let month = moment(date).month()
+    return parseFloat(newObj[month][0].toFixed(1))
   }
 }
 
-if (typeof module !== 'undefined'){
+if (typeof module !== 'undefined') {
   module.exports = SleepRepository
 }

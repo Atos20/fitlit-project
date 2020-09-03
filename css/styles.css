@@ -1,15 +1,15 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .challenge, .wel-message, .status-message {
-    font-family: 'Comfortaa', cursive;
-    color: #F7FFF7;
-    font-size: 1.4em;
+  font-family: 'Comfortaa', cursive;
+  color: #F7FFF7;
+  font-size: 1.4em;
 }
 
 div > canvas {
-    padding: 3%;
+  padding: 3%;
 }
 
 img{
@@ -18,126 +18,111 @@ img{
 }
 
 .nav-bar, .welcome-section{
-    background-color: #292F36;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 3% 2% 4% 2%;
+  background-color: #292F36;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3% 2% 4% 2%;
 }
 
 .container-one{
-    display: flex;
-    flex-direction: rows;
+  display: flex;
+  flex-direction: row;
 }
 
 .fa-bars{
-    font-size: 2.5em;
-    color: gold;
+  font-size: 2.5em;
+  color: gold;
 }
 
 .user-drop, #user-date{
-    height: 2em;
-    width: 12em;
-    border: none;
-    font-family: 'Comfortaa', cursive;
-    padding: 1% 0% 1% 5%;
-    background-color: transparent;
-    color: #F7FFF7;
-    font-size: 1.2em;
+  height: 2em;
+  width: 12em;
+  border: none;
+  font-family: 'Comfortaa', cursive;
+  padding: 1% 0% 1% 5%;
+  background-color: transparent;
+  color: #F7FFF7;
+  font-size: 1.2em;
 }
 
 .find-date-button{
-    font-size: 1.2em;
-    text-decoration: none;
-    border: none;
-    border-radius: 2em;
-    padding: 0.3em 1.2em;
+  font-size: 1.2em;
+  text-decoration: none;
+  border: none;
+  border-radius: 2em;
+  padding: 0.3em 1.2em;
     margin: 0em 0.1em 0.1em 0em;
-    background-color: #FF6B6B;
-    color: #F7FFF7;
+  background-color: #FF6B6B;
+  color: #F7FFF7;
 }
 
 .challenge{
-    font-family: 'Fredoka One', cursive;
-    font-size: 2em;
-    word-spacing: 6px;
-    letter-spacing: 2px;
-    color: #FFE66D;
-    text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 2em;
+  word-spacing: 6px;
+  letter-spacing: 2px;
+  color: #FFE66D;
+  text-align: center;
 }
 
 .welcome-section {
-    background-color: #586574;
+  background-color: #586574;
 }
 
 section > h2{
-    font-family: 'Comfortaa', cursive;
-    font-size: 1em;
-    font-weight: bold;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .main{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3, .3fr);
-    font-family: 'Comfortaa', cursive;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, .3fr);
+  font-family: 'Comfortaa', cursive;
 }
 
 .hydration-section{
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 10%);   */
-    /* background-color: #1A1E23; */
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-self: center;
-    /* margin: 0% 0% 0% 0%; */
-    grid-area: 1/ 4 /2/ 5;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  grid-area: 1/ 4 /2/ 5;
 }
 
 .hydration-title, .sleep-title{
-    grid-area: 1/ 1 /1/ 3;
-    text-align: center;
+  grid-area: 1/ 1 /1/ 3;
+  text-align: center;
 }
 
 
 .sleep-section{
-    /* this is for grid */
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: 15% 50%;
-    /* text-align: center; */
-    background-color: #95A2B1;
-    /* align-self: self-end; */
-    grid-area: 2/ 4/ 3 / 7;
-    /* display: flex; */
-    /* flex-direction: column; */
-    align-self: center;
-    justify-content: center;
-    /* margin: 10% 5% 6% 1%; */
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: 15% 50%;
+  background-color: #95A2B1;
+  grid-area: 2/ 4/ 3 / 7;
+  align-self: center;
+  justify-content: center;
 }
 
 .pastWeekSleepHours-chart{
-    /* position: relative; */
-    /* margin: 10% 0% 15% 0%; */
-    /* display: block; */
-    margin: 5% 0% 15% 0
+  margin: 5% 0% 15% 0
 }
 
 .allTimeSleepHoursAndQuality-chart{
-    margin: 10% 0% 15% 0%;
+  margin: 10% 0% 15% 0%;
 }
 
 .activity-section{
-    display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-template-rows: 15% 10% 40%;
-    grid-area: 1/ 1/ 3/ 4;
-    padding: 5% 2% 0% 2%;
-    background-color: #F7FFF7;
-    height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: 15% 10% 40%;
+  grid-area: 1/ 1/ 3/ 4;
+  padding: 5% 2% 0% 2%;
+  background-color: #F7FFF7;
+  height: auto;
 }
 
 .friends-section{
@@ -168,10 +153,10 @@ section > h2{
 }
 
 .goals, .list, .card-title, .daily-steps, .distance-walked, .minutes-active{
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.5em;
-    text-align: center;
-    margin: 5%;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 5%;
 }
 
 #daily-steps, #minutes-active, #distance-walked{
@@ -183,92 +168,74 @@ section > h2{
 }
 
 .activity-title, .hydration-title, .sleep-title, .user-title{
-    margin: 5% 0% 15% 0%;
-    font-family: 'Monoton', cursive;
-    font-size: 1.7em;
-    text-align: center;
+  margin: 5% 0% 15% 0%;
+  font-family: 'Monoton', cursive;
+  font-size: 1.7em;
+  text-align: center;
 }
 
 .activity-title{
-    grid-area: 1/ 1/ 4/ 5;
-    text-align: center;
-}
-
-.hydration-title{
-    /* color: #F7FFF7; */
+  grid-area: 1/ 1/ 4/ 5;
+  text-align: center;
 }
 
 .sleep-title{
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 .daily-steps{
-    grid-area: 2/ 2 / 4/ 4;
+  grid-area: 2/ 2 / 4/ 4;
 }
 
 .minutes-active{
-    grid-area: 2/ 1 / 3/ 2;
+  grid-area: 2/ 1 / 3/ 2;
 }
 
 .distance-walked{
-    grid-area: 2/ 4 / 3/ 4;
+  grid-area: 2/ 4 / 3/ 4;
 }
 
 .activity-data-vs-all-daily-chart{
-    grid-area: 3/ 1 / 4/ 5;
-    margin: 0% 0% 0% 0%;
+  grid-area: 3/ 1 / 4/ 5;
+  margin: 0% 0% 0% 0%;
 
 }
 
 .weekly-activity-chart{
-    grid-area: 4/ 1/ 4/ 5;
-    /* position: relative; */
-    margin: 10% 0% 0% 0%;
-    /* display: block; */
-    /* height: 20em;
-    width: 30em; */
+  grid-area: 4/ 1/ 4/ 5;
+  margin: 10% 0% 0% 0%;
 }
 
-.dailyHydrationData-chart{
-    /* position: relative; */
-    /* margin: auto; */
-    /* display: block; */
-    /* height: 100px;
-    width: 250px; */
-    /* margin-bottom: 10%; */
-}
 
 .user-id-card{
-    background-color: #2CA096;
-    /* padding: 1%; */
-    text-align: center;
-    font-family: 'Fredoka One', cursive;
-    /* margin-top: 5%; */
-    font-size: 1.2em;
-    grid-area: 1/ 5/ 2/ 7;
+  background-color: #2CA096;
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2em;
+  grid-area: 1/ 5/ 2/ 7;
 }
 
 .user-id-card:hover{
-    background-color: #2CA096;
+  background-color: #2CA096;
 }
 
 .user-image{
-    border-radius: 75px;
-    margin-top: 5%;
+  border-radius: 75px;
+  margin-top: 5%;
 }
 
 .user-id-card > h2{
-    padding: 4% ;
+  padding: 4% ;
 }
 
 .friends-goals{
-    background-color: #FFE66D;
-    grid-area: 3/ 1/ 4/ 4;
+  background-color: #FFE66D;
+  grid-area: 3/ 1/ 4/ 4;
 }
 
 .friends-list{
-    background-color: rgb(163, 71, 125);
-    grid-area: 3/ 4/ 4/ 7;
+  background-color: rgb(163, 71, 125);
+  grid-area: 3/ 4/ 4/ 7;
 }
 
 @media screen and (max-width: 1300px) {
@@ -341,7 +308,6 @@ section > h2{
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: .75fr 1fr .4fr;
-        /* justify-items: center; */
     }
 
     .activity-section{
@@ -350,7 +316,6 @@ section > h2{
 
     .hydration-section{
         grid-area: 2/ 4/ 3/ 7;
-        /* margin: 0%; */
     }
 
     .sleep-section{
@@ -379,7 +344,6 @@ section > h2{
         grid-template-rows: repeat(3, 30%);
         gap: 5px 10px;
         justify-content: center;
-        /* justify-content: space-between;    */
     }
 
     .container-one, .container-two{

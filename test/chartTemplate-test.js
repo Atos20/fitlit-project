@@ -16,25 +16,25 @@ describe('User', () => {
   it('should be an instance of the charTemplate class', () => {
     expect(chartTemplate1).to.be.an.instanceOf(ChartTemplate);
   });
-  it('should be able to create a bar chart',() => {
+  it('should be able to create a bar chart', () => {
     expect(chartTemplate1.type).to.deep.equal('bar');
   });
   it('should be able to create a line chart', () => {
     expect(chartTemplate2.type).to.equal('line');
   });
-  it('should be able to have labels',() => {
+  it('should be able to have labels', () => {
     expect(chartTemplate1.data.labels).to.deep.equal(['one', 'two']);
   });
   it('should be able to have different labels', () => {
     expect(chartTemplate2.data.labels).to.deep.equal(['three', 'four']);
   });
-  it('should be able to have label',() => {
+  it('should be able to have label', () => {
     expect(chartTemplate1.data.datasets[0].label).to.equal('this is a bar chart');
   });
   it('should be able to have different label', () => {
     expect(chartTemplate2.data.datasets[0].label).to.equal('this is a line chart');
   });
-  it('should be able to have a data set',() => {
+  it('should be able to have a data set', () => {
     expect(chartTemplate1.data.datasets[0].data).to.deep.equal([]);
   });
   it('should be able to have a different set of data', () => {

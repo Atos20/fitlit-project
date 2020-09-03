@@ -8,8 +8,6 @@ const dummyHydrationData = require('../data/dummyHydrationData');
 
 describe('HydrationRepository', () => {
   let hydrationRepo
-  // const dummyHydrationData
-  let user
   let today
   beforeEach(()=> {
     hydrationRepo = new HydrationRepository(dummyHydrationData);
@@ -31,19 +29,19 @@ describe('HydrationRepository', () => {
   it('Should be bale to return oz drinken over the course of 7 days', () => {
     expect(hydrationRepo.returnWeeksHydration(1, today)).to.deep.equal(
       [
-        {"2019/06/1": 20}, 
-        {"2019/06/2": 27}, 
-        {"2019/06/3": 37}, 
-        {"2019/06/4": 30}, 
-        {"2019/06/5": 50}, 
-        {"2019/06/6": 30}, 
+        {"2019/06/1": 20},
+        {"2019/06/2": 27},
+        {"2019/06/3": 37},
+        {"2019/06/4": 30},
+        {"2019/06/5": 50},
+        {"2019/06/6": 30},
         {"2019/06/7": 32}
       ]
     )
   })
   it('should be able to return the dates from the desired week', () => {
     hydrationRepo.returnWeeksHydration(1, today);
-    const test = hydrationRepo.retriveHydrationDates(1, today); 
+    const test = hydrationRepo.retriveHydrationDates(1, today);
     expect(test).to.deep.equal(["2019/06/1", "2019/06/2", "2019/06/3", "2019/06/4", "2019/06/5", "2019/06/6", "2019/06/7"])
   })
 })

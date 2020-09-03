@@ -10,8 +10,6 @@ describe('User', () => {
   let user2;
   let user3;
   let user4;
-  let userData;
-  let userData2;
   let activityTestData;
   let userTestData;
 
@@ -74,28 +72,28 @@ describe('User', () => {
   });
 
   it('should be able to list the information about the user\'s friends', () => {
-    const getMyFriends = user.retrieveFriendsList(user, userTestData)
-    expect(getMyFriends ).to.deep.equal([user2, user3, user4])
+    const getMyFriends = user.retrieveFriendsList(userTestData)
+    expect(getMyFriends).to.deep.equal([user2, user3, user4])
   })
   it('should be able to get the users average step count for a given week', () => {
     expect(user.getUserStepCount(user, activityTestData, today)).to.equal(71378)
   })
 
   it('should be able to get the users friends average step count for a given week with it\'s id\'s', () => {
-    expect(user. getFriendsStepCount(user, userTestData, activityTestData, today)).to.deep.equal(
+    expect(user. getFriendsStepCount(userTestData, activityTestData, today)).to.deep.equal(
       [
-        { id: 2, averageStep: 40886 },
-        { id: 3, averageStep: 61369 },
-        { id: 4, averageStep: 63014 }
+        { "name": "Viridiana Monsidine", id: 2, averageStep: 40886 },
+        { "name": "Daniel Witting", id: 3, averageStep: 61369 },
+        { "name": "Gerardo Connelly", id: 4, averageStep: 63014 }
       ]);
   })
 
   it('should be able to to return the information from the person who have walked the most', () => {
-    expect(user. getBestWalkersData(user, userTestData, activityTestData, today)).to.deep.equal(
+    expect(user. getBestWalkersData(userTestData, activityTestData, today)).to.deep.equal(
       [
-        { id: 4, averageStep: 63014 },
-        { id: 3, averageStep: 61369 },
-        { id: 2, averageStep: 40886 }
+        { "name": "Gerardo Connelly", id: 4, averageStep: 63014 },
+        { "name": "Daniel Witting", id: 3, averageStep: 61369 },
+        { "name": "Viridiana Monsidine", id: 2, averageStep: 40886 }
       ]
     )
   })
