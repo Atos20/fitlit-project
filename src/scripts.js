@@ -59,7 +59,6 @@ const toggleUser = () => {
   } else if (userSelect.value === "Deborah Keebler") {
     visibleUser = userRepo.userInstances[29]
   }
-  console.log(visibleUser)
   loadUserDataForDay(visibleUser, userRepo, today, userRepo.usersData)
 }
 
@@ -72,7 +71,7 @@ const changeToday = () => {
 }
 
 let number = () => {
-  return Math.floor(Math.random()*10)
+  return Math.floor(Math.random() * 10)
 }
 
 let loadCardInfo = (user, userRepo) => {
@@ -87,34 +86,30 @@ let loadCardInfo = (user, userRepo) => {
 let displayDailyWaterConsumption = (user, date) => {
   const result = hydrationRepo.returnDaysHydration(user.id, date);
   const labels = ['Daily Water Consumption']
-  const listOfDates = [];
-  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption',[result, 50])
+  const dailyHydrationTemplate = new ChartTemplate('bar', labels, 'Daily Water Consumption', [result, 50])
   chart1 = new Chart(waterDailyChart, dailyHydrationTemplate);
 }
 
 let displayWeeklyWaterConsumption = (user, date) => {
-  const data = hydrationRepo.returnWeeksHydration(user.id, date);
-  const weekDates = hydrationRepo.retriveHydrationDates(user.id, date) ;
+  const weekDates = hydrationRepo.retriveHydrationDates(user.id, date);
   const formatedDates = weekDates.map(newDate => moment(newDate).format('MM-DD'));
-  const values = hydrationRepo.retriveHydrationValues(user.id, date) ;
+  const values = hydrationRepo.retriveHydrationValues(user.id, date);
   const weeklyHydrationTemplate = new ChartTemplate('bar', formatedDates, 'Weekly Water Consumption', values)
   chart2 = new Chart(waterWeeklyChart, weeklyHydrationTemplate);
 }
-
-
 
 let displayFriends = (user, data) => {
   friendsList.innerHTML = ''
   let friends = user.retrieveFriendsList(data)
   friends.forEach((friend) => {
     friendsList.insertAdjacentHTML('beforeEnd',
-    `<div class="friends-card">
-      <h3 class="card-title">${friend.name}</h3>
-      <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
-      <h3 class="card-title">Friend's Step Goal</h3>
-      <h3>${friend.dailyStepGoal}</h3>
-    </div>`
-  )
+      `<div class="friends-card">
+        <h3 class="card-title">${friend.name}</h3>
+        <img class="user-image" src="../stock_photos/${number()}.jpeg" alt="">
+        <h3 class="card-title">Friend's Step Goal</h3>
+        <h3>${friend.dailyStepGoal}</h3>
+      </div>`
+    )
   })
 }
 
@@ -149,76 +144,67 @@ let displayDailyAndAverageSleepData = (user, date) => {
   let sleepTemplate = {
     type: 'bar',
     data: {
-        labels: ['Sleep Hours', 'Sleep Quality'],
-        datasets: [{
-            label: 'Daily Data',
-            data: dailyData,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        },{
-            label: 'Average',
-            data: aveData,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: ['Sleep Hours', 'Sleep Quality'],
+      datasets: [{
+        label: 'Daily Data',
+        data: dailyData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }, {
+        label: 'Average',
+        data: aveData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: true,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
   };
-chart3 = new Chart(sleepAllTimeChart, sleepTemplate)
-}
-
-
-let displayWeeklySleepQuality = (user, date) => {//= 2
-  const results = sleepRepo.specificWeeksQuality(user.id, date);
-  const data = Object.values(results)
-  const labels = Object.keys(results)
-  const weeklySleepQTemplate = new ChartTemplate('bar', labels, "Last Week's Sleep Quality", data)
-  const weeklySleepQChart = new Chart(sleepWeeklyQChart, weeklySleepQTemplate);
+  chart3 = new Chart(sleepAllTimeChart, sleepTemplate)
 }
 
 let weeklySleepQualityAndSleepHours = (user, date) => {
-  const hoursSlept = sleepRepo.specificWeeksHours(user.id, date);//=> data1
-  const sleepQuality = sleepRepo.specificWeeksQuality(user.id, date);//=> data2
+  const hoursSlept = sleepRepo.specificWeeksHours(user.id, date);
+  const sleepQuality = sleepRepo.specificWeeksQuality(user.id, date);
   const data1 = Object.values(hoursSlept);
   const data2 = Object.values(sleepQuality);
   const labels = Object.keys(sleepQuality); //=> dates
@@ -226,60 +212,60 @@ let weeklySleepQualityAndSleepHours = (user, date) => {
   let sleepTemplate = {
     type: 'bar',
     data: {
-        labels: formatedDates,// => dates
-        datasets: [{
-            label: 'Hours Slept',
-            data: data1,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-        },{
-            label: 'Sleep Quality',
-            data: data2,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: formatedDates,
+      datasets: [{
+        label: 'Hours Slept',
+        data: data1,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1,
+      }, {
+        label: 'Sleep Quality',
+        data: data2,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-};
-chart4 = new Chart(sleepWeeklyHChart, sleepTemplate)
+  };
+  chart4 = new Chart(sleepWeeklyHChart, sleepTemplate)
 }
 
 let displayDailySteps = (user, date) => {
@@ -302,59 +288,59 @@ let displayDailyActivityVsAll = (user, date) => {
   let vsAllActivityTemplate = {
     type: 'bar',
     data: {
-        labels: ['Daily Steps', 'Minutes Active', 'Flights'],
-        datasets: [{
-            label: 'User',
-            data: [dailyStepsUser, dailyMinsUser, dailyFlightsUser],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        },{
-            label: 'Average All',
-            data: [aveSteps, aveMins, aveFlights],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: ['Daily Steps', 'Minutes Active', 'Flights'],
+      datasets: [{
+        label: 'User',
+        data: [dailyStepsUser, dailyMinsUser, dailyFlightsUser],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }, {
+        label: 'Average All',
+        data: [aveSteps, aveMins, aveFlights],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-};
+  };
 chart5 = new Chart(activityVsAllChart, vsAllActivityTemplate);
 }
 
@@ -373,57 +359,56 @@ let displayWeeklyActivity = (user, date) => {
   let weeklyActivityTemplate = {
     type: 'line',
     data: {
-        labels: formatedDates,
-        datasets: [{
-            label: 'Miles',
-            data: weeklyMiles,
-            backgroundColor: [
-
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 1,
-            fill: false,
-            lineTension: 0
-        },{
-            label: 'Active Minutes',
-            data: weeklyActiveMin,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-            ],
-            borderWidth: 1,
-            fill: false,
-            lineTension: 0
-        },{
-            label: 'Flights',
-            data: weeklyFlights,
-            backgroundColor: [
-                'rgba(153, 102, 255, 0.2)',
-            ],
-            borderColor: [
-                'rgba(153, 102, 255, 1)',
-            ],
-            borderWidth: 1,
-            fill: false,
-            lineTension: 0
-        }]
+      labels: formatedDates,
+      datasets: [{
+        label: 'Miles',
+        data: weeklyMiles,
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.2)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1,
+        fill: false,
+        lineTension: 0
+      }, {
+        label: 'Active Minutes',
+        data: weeklyActiveMin,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+        ],
+        borderWidth: 1,
+        fill: false,
+        lineTension: 0
+      }, {
+        label: 'Flights',
+        data: weeklyFlights,
+        backgroundColor: [
+          'rgba(153, 102, 255, 0.2)',
+        ],
+        borderColor: [
+          'rgba(153, 102, 255, 1)',
+        ],
+        borderWidth: 1,
+        fill: false,
+        lineTension: 0
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-};
-chart6 = new Chart(activityWeeklyChart, weeklyActivityTemplate);
+  };
+  chart6 = new Chart(activityWeeklyChart, weeklyActivityTemplate);
 }
 
 let updateWelcomeMessage = (user) => {

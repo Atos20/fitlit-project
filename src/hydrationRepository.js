@@ -1,5 +1,3 @@
-// const moment = require('moment')
-
 class HydrationRepository {
   constructor(data) {
     this.data = data;
@@ -18,16 +16,6 @@ class HydrationRepository {
       dataDay.userID === id && dataDay.date === date)
     return dayData.numOunces
   }
-
-  // returnWeeksHydration(id, date) {
-  // const userInfo = this.data.filter(data => data.userID === id);
-  // const locateDate = userInfo.find(user => user.date === date)
-  // const indexOfDate = userInfo.indexOf(locateDate);
-  // const weekData = userInfo.slice(indexOfDate - 6, indexOfDate + 1)
-  // const weekOz = weekData.map(data => (data.numOunces))
-  // console.log(weekOz)
-  // return weekOz
-  // }
 
   returnWeeksHydration(id, date) {
     const userInfo = this.data.filter(data => data.userID === id);
@@ -56,8 +44,6 @@ class HydrationRepository {
     return values
   }
 }
-
-
 
 if (typeof module !== 'undefined') {
   module.exports = HydrationRepository

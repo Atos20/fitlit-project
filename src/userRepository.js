@@ -2,7 +2,8 @@ class UserRepository {
   constructor(data) {
     this.usersData = data
     this.userInstances = []
-    };
+  }
+  
   createUsers() {
     let newInstances = this.usersData.map((item)=>{
       let user = new User(item)
